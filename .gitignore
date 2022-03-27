@@ -14,8 +14,6 @@ local.properties
 .loadpath
 
 # More Eclipse stuff
-.project
-.classpath
 .metadata
 *.launch
 .externalToolBuilders/
