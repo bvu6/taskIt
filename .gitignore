@@ -12,6 +12,8 @@ tmp/
 *~.nib
 local.properties
 .loadpath
+.classpath
+.project
 
 # More Eclipse stuff
 .metadata
