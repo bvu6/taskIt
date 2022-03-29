@@ -14,6 +14,10 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
+configurations{
+	testCompile
+}
+
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
