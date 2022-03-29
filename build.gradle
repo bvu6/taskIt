@@ -14,10 +14,6 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
-configurations{
-	testCompile
-}
-
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
@@ -40,9 +36,9 @@ dependencies {
     // Use JUnit test framework
     testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
 	
-	testCompile 'org.mockito:mockito-core:2.+'
-	testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "5.${junit5MinorVersion}"
-    testCompile group: 'org.junit.platform', name: 'junit-platform-launcher', version: "1.${junit5MinorVersion}"
+	testImplementation 'org.mockito:mockito-core:2.+'
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "5.${junit5MinorVersion}"
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: "1.${junit5MinorVersion}"
 }
 
 
