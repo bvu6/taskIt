@@ -1,4 +1,7 @@
 package edu.pacific.comp55.starter;
+
+import javax.swing.SwingUtilities;
+
 public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
@@ -39,5 +42,11 @@ public class MainApplication extends GraphicsApplication {
 	
 	public static void main(String[] args) {
 		new MainApplication().start();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				new MenuPane();
+			}
+		});
+		
 	}
 }
