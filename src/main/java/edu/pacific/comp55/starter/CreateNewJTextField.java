@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+
 public class CreateNewJTextField extends JFrame {
 
    private static final long serialVersionUID = 40;

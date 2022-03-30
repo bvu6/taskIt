@@ -13,12 +13,13 @@ import javax.swing.JTextField;
 
 
 
+
 public class MenuPane extends GraphicsPane {
 	private static final String EXIT_ON_CLOSE = null;
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
 	private GButton rect;
-
+	private JTextField field1;
 	public MenuPane(MainApplication app) {
 		super();
 		program = app;
@@ -26,26 +27,30 @@ public class MenuPane extends GraphicsPane {
 		rect.setFillColor(Color.RED);
 		
 		
-		
+		field1 = new JTextField();
+	    field1.setText("          ");
+	    //add(field1);
 	}
 
-	JFrame frame = new JFrame("textbox");
-	JTextField textfield = new JTextField("", 10);
+//	JFrame frame = new JFrame("textbox");
+//	JTextField textfield = new JTextField("", 10);
+	
+	
 	
 	public MenuPane() {
-		frame.add(textfield);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
+		//frame.add(textfield);
+		//frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		//frame.pack();
+		//frame.setVisible(true);
 	}
 
+	
 	
 
 	@Override
 	public void showContents() {
 		program.add(rect);
-	
-		
+		program.getGCanvas().add(field1, 350, 350);//Need to put .getGCanvas().add 
 	}
 
 	@Override

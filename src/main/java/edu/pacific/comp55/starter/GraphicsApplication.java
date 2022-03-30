@@ -24,6 +24,7 @@ public abstract class GraphicsApplication extends GraphicsProgram {
 		addKeyListeners();
 		addMouseListeners();
 	}
+	 
 	
 	/* switchToScreen(newGraphicsPane)
 	 * -------------------------------
