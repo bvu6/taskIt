@@ -20,16 +20,30 @@ public class MenuPane extends GraphicsPane {
 										// all of the GraphicsProgram calls
 	private GButton rect;
 	private JTextField field1;
+	private JTextField field2;
+	private GParagraph pass;
+	private GParagraph user;
+
+
+
 	public MenuPane(MainApplication app) {
 		super();
 		program = app;
-		rect = new GButton("Next", 50, 50, 100, 100);
-		rect.setFillColor(Color.RED);
+		rect = new GButton("login", 350, 350, 80, 50);
+		rect.setFillColor(Color.cyan);
 		
+		pass = new GParagraph("\npassword", 290, 290);
+		user = new GParagraph("user name", 282, 273);
+
 		
-		field1 = new JTextField();
-	    field1.setText("          ");
+	    JTextField field3 = new JTextField(10);
+
+		
+		field1 = new JTextField(10);
+	    //field1.setText(10);
 	    //add(field1);
+	    field2 = new JTextField(10);
+	    //field2.setText("          ");
 	}
 
 //	JFrame frame = new JFrame("textbox");
@@ -50,12 +64,23 @@ public class MenuPane extends GraphicsPane {
 	@Override
 	public void showContents() {
 		program.add(rect);
-		program.getGCanvas().add(field1, 350, 350);//Need to put .getGCanvas().add 
+		program.getGCanvas().add(field1, 350, 290);//Need to put .getGCanvas().add 
+		program.getGCanvas().add(field2, 350, 260);//Need to put .getGCanvas().add 
+		program.add(pass);
+		program.add(user);
+
+
 	}
 
 	@Override
 	public void hideContents() {
 		program.remove(rect);
+		program.getGCanvas().remove(field1);
+		program.getGCanvas().remove(field2);
+		program.remove(pass);
+		program.remove(user);
+
+
 	}
 
 	@Override
