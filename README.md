@@ -71,16 +71,16 @@ customer-project-voltorb created by GitHub Classroom
 11. Task: Create Filter Search Bar
 - JTextBox
 - Enter “or” or “and” commands
-12: Task:  Create List of Tasks view
+12. Task:  Create List of Tasks view
 - Title and due date of tasks
-13: Task: Create checkbox option
+13. Task: Create checkbox option
 - Can mark for deleting
-14: Task: Display name of user on top of screen
+14. Task: Display name of user on top of screen
 - Take username and have it displayed 
-15:Task: Create new pane for creating a task
+15. Task: Create new pane for creating a task
 - Display blank screen 
-16: Task: upload garbage can and pencil pics
+16. Task: upload garbage can and pencil pics
 - Images that will represent delete and edit
-17: Task: Create back button
+17. Task: Create back button
 - Button that allows you to go to preview screen
 
