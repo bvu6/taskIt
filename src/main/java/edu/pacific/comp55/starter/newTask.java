@@ -15,12 +15,19 @@ public class newTask extends JFrame
        JPanel jp = new JPanel();
        JLabel jl = new JLabel();
        JLabel projectOutput = new JLabel(); 
-       JLabel titleLabel = new JLabel("Title:"); 
-       JLabel projectLabel = new JLabel ("Project Label:"); 
+       JLabel titleLabel = new JLabel("Title:" , JLabel.LEFT); 
+       JLabel projectLabel = new JLabel ("Project:", JLabel.LEFT); 
+       JLabel dateLabel = new JLabel ("Due Date:", JLabel.LEFT); 
+       JLabel priorityLabel = new JLabel ("Priority:", JLabel.LEFT); 
+       JLabel descriptionLabel = new JLabel ("Description:", JLabel.LEFT); 
        JTextField jt = new JTextField(20);
        JTextField projectText = new JTextField(20);
-       JButton jb = new JButton("Enter\n");
+       JTextField dateText = new JTextField(20); 
+       JTextField descriptionText = new JTextField(20); 
+       JButton jb = new JButton("Enter");
        JButton projectB = new JButton ("Enter"); 
+
+       
 
        public newTask()
        {
@@ -32,54 +39,24 @@ public class newTask extends JFrame
               //jp.add(jt);
               titleLabel.setBounds(10,20,80,25); 
               jp.add(titleLabel); 
-              jt.setBounds(100,20,165,25); 
+              jt.setBounds(100,20,145,25); 
               jp.add(jt); 
 
-
-              jt.addActionListener(new ActionListener()
-              {
-                     public void actionPerformed(ActionEvent e)
-                     {
-                           String input = jt.getText();
-                           jl.setText(input); 
-                     }
-              });
-
-              jp.add(jb);
-              jb.addActionListener(new ActionListener()
-              {
-                      public void actionPerformed(ActionEvent e)
-                      {
-                             String input = jt.getText();
-                             jl.setText(input);
-                      }
-              });
+              //jl.setBounds(150, 20, 50, 25); 
+              //jp.add(jl); //prints out the user input
               
-              jp.add(jl); //prints out the user input
-              
-              projectLabel.setBounds(10,50,80,20); 
+              projectLabel.setBounds(10,600,80,20); 
               jp.add(projectLabel); 
-              projectText.setBounds(100,50,165,25); 
+              projectText.setBounds(100,90,145,25); 
               jp.add(projectText); 
-              projectText.addActionListener(new ActionListener()
-              {
-                     public void actionPerformed(ActionEvent e)
-                     {
-                           String input = projectText.getText();
-                           projectOutput.setText(input); 
-                     }
-              });
-
-              jp.add(projectB);
-              projectB.addActionListener(new ActionListener()
-              {
-                      public void actionPerformed(ActionEvent e)
-                      {
-                             String input = projectText.getText();
-                             projectOutput.setText(input);
-                      }
-              });
+ 
+              jp.add(dateLabel); 
+              jp.add(dateText); 
+              jp.add(priorityLabel); 
+              //MICHELLE:add buttons here
               
+              jp.add(descriptionLabel); 
+              jp.add(descriptionText); 
               add(jp);
               
 
