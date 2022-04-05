@@ -17,15 +17,15 @@ public class newTask extends JFrame
 
        JLabel projectOutput = new JLabel(); 
        JLabel titleLabel = new JLabel("Title:" , JLabel.LEFT); 
-       JLabel projectLabel = new JLabel ("Project:", JLabel.LEFT); 
+       JLabel categoryLabel = new JLabel ("Category:", JLabel.LEFT); 
        JLabel dateLabel = new JLabel ("Due Date:", JLabel.LEFT); 
        JLabel priorityLabel = new JLabel ("Priority:", JLabel.LEFT); 
        JLabel descriptionLabel = new JLabel ("Description:", JLabel.LEFT); 
 
-       
        JTextField titleText = new JTextField(20);
-       JTextField projectText = new JTextField(20);
+       JTextField categoryText = new JTextField(20);
        JTextField dateText = new JTextField(20); 
+       JTextField priorityText = new JTextField(20); 
        JTextField descriptionText = new JTextField(20); 
        
        JButton lowButton = new JButton("Low");
@@ -50,29 +50,32 @@ public class newTask extends JFrame
               //jl.setBounds(150, 20, 50, 25); 
               //jp.add(jl); //prints out the user input
               
-              projectLabel.setBounds(10,600,80,20); 
-              panel.add(projectLabel); 
-              projectText.setBounds(100,90,145,25); 
-              panel.add(projectText); 
+              categoryLabel.setBounds(10,600,80,20); 
+              panel.add(categoryLabel); 
+              categoryText.setBounds(100,90,145,25); 
+              panel.add(categoryText); 
  
               panel.add(dateLabel); 
               panel.add(dateText); 
               panel.add(priorityLabel); 
               
               //MICHELLE:add buttons here
-
               panel.add(priorityLabel);
-              panel.add(lowButton);
+              panel.add(priorityText); 
+
+              
+/*            panel.add(lowButton);
               panel.add(medButton);
               panel.add(highButton);             
-              
+*/              
               panel.add(descriptionLabel);
               descriptionText.setBounds(100,90,145,100);
               panel.add(descriptionText); 
               
-//              saveButton.setBackground(Color.CYAN);
+              saveButton.setBackground(Color.CYAN);
+              saveButton.setOpaque(true);
+              saveButton.setBorderPainted(false);
               panel.add(saveButton);
-
               
               add(panel);
               
@@ -86,27 +89,16 @@ public class newTask extends JFrame
 	            	   	String title = titleText.getText();
 	                    System.out.println("\nTitle: " + title);
 	                    
-	            	   	String project = projectText.getText();
-	                    System.out.println("\nProject: " + project);
+	            	   	String category = categoryText.getText();
+	                    System.out.println("\nGroup: " + category);
 	                    
 	            	   	String dueDate = dateText.getText();
 	                    System.out.println("\nDue Date: " + dueDate);
-	                   
-	            	   	//Highlight the button when pressed
 	                    
-	                    if(lowButton.getModel().isPressed()) {
-	                    	System.out.println("Low button pressed ");
-
-	                    	String lowPriority = lowButton.getActionCommand();
-	                    	System.out.println("\nPriority: "+ lowPriority);
-	                    }
+	                    String priority = priorityText.getText();
+	                    System.out.println("\nDue Date: " + priority);
 	                    
-	                    String medPriority = medButton.getActionCommand();
-	                    System.out.println("\nPriority: "+ medPriority);
-	                    
-	                    String highPriority = highButton.getActionCommand();
-	                    System.out.println("\nPriority: "+ highPriority);
-	                    
+	            	   	//Highlight the button when pressed	                    
 	                    /*if (e.getSource() == lowButton){
 	                    	String priority = lowButton.getActionCommand();
 		                    System.out.println("Priority: "+ priority);
