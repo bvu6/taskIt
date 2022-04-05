@@ -55,11 +55,11 @@ customer-project-voltorb created by GitHub Classroom
 - Text box for user to input date into
 6. Task: Assign Group/Project Name
 - Character Limit
-7.Task: Assign Priority levels when creating task
+7. Task: Assign Priority levels when creating task
 - Have Critical, important, medium, low options
-8.Task: Description Text box
+8. Task: Description Text box
 - Text box to input a description of task
-9.Task: Due date calendar
+9. Task: Due date calendar
 - Small panel to represent calendar
 - Arrows to adjust what month is showing 
 
