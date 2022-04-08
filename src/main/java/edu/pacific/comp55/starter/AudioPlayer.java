@@ -71,7 +71,7 @@ public final class AudioPlayer {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				playSoundWithOptions(folder, filename, shouldLoop);
+				//playSoundWithOptions(folder, filename, shouldLoop);
 			}
 		});
 	}
