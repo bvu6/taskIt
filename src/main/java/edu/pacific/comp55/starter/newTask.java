@@ -94,18 +94,9 @@ public class newTask extends JFrame
 	                   
 	            	   	//Highlight the button when pressed
 	                    
-	                    if(lowButton.getModel().isPressed()) {
-	                    	System.out.println("Low button pressed ");
-
-	                    	String lowPriority = lowButton.getActionCommand();
-	                    	System.out.println("\nPriority: "+ lowPriority);
-	                    }
-	                    
-	                    String medPriority = medButton.getActionCommand();
-	                    System.out.println("\nPriority: "+ medPriority);
-	                    
-	                    String highPriority = highButton.getActionCommand();
-	                    System.out.println("\nPriority: "+ highPriority);
+	                    lowButton.addActionListener(this); 
+	                    medButton.addActionListener(this); 
+	                    highButton.addActionListener(this); 
 	                    
 	                    /*if (e.getSource() == lowButton){
 	                    	String priority = lowButton.getActionCommand();
@@ -129,7 +120,22 @@ public class newTask extends JFrame
               }); //end of actionListener
               
        } // end of public newTask
-
+       
+        
+       public void actionPerformed (ActionEvent e) {
+    	   if (e.getSource() == lowButton) {
+    		   System.out.println("Low"); 
+    		   
+    	   }
+    	   else if (e.getSource() == medButton) {
+    		   System.out.println("Medium"); 
+    		   
+    	   }
+    	   else if (e.getSource() == highButton) {
+    		   System.out.println("High"); 
+    		   
+    	   }
+       }
 
        public static void main(String[] args)
        {
