@@ -1,15 +1,23 @@
 package edu.pacific.comp55.starter;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+
+
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.time.LocalDate;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
+
+
+
 
 public class newTask extends JFrame
 {
@@ -20,17 +28,15 @@ public class newTask extends JFrame
        JLabel projectLabel = new JLabel ("Project:", JLabel.LEFT); 
        JLabel dateLabel = new JLabel ("Due Date:", JLabel.LEFT); 
        JLabel priorityLabel = new JLabel ("Priority:", JLabel.LEFT); 
-       JLabel descriptionLabel = new JLabel ("Description:", JLabel.LEFT); 
+       JLabel descriptionLabel = new JLabel ("Description:", JLabel.LEFT);
 
        
        JTextField titleText = new JTextField(20);
        JTextField projectText = new JTextField(20);
-       JTextField dateText = new JTextField(20); 
        JTextField descriptionText = new JTextField(20); 
-       
-       JButton lowButton = new JButton("Low");
-       JButton medButton = new JButton("Medium");
-       JButton highButton = new JButton("High");
+       JTextField dateText = new JTextField(20); 
+       String[] priorityOptions = {"Low", "Medium", "High"};
+       JComboBox<String> priorityComboBox = new JComboBox<>(priorityOptions);
        JButton saveButton = new JButton("Save");
 
        public newTask()
@@ -62,9 +68,9 @@ public class newTask extends JFrame
               //MICHELLE:add buttons here
 
               panel.add(priorityLabel);
-              panel.add(lowButton);
-              panel.add(medButton);
-              panel.add(highButton);             
+              priorityComboBox.setBounds(100, 50, 200, 25);
+              panel.add(priorityComboBox); 
+            
               
               panel.add(descriptionLabel);
               descriptionText.setBounds(100,90,145,100);
@@ -94,9 +100,8 @@ public class newTask extends JFrame
 	                   
 	            	   	//Highlight the button when pressed
 	                    
-	                    lowButton.addActionListener(this); 
-	                    medButton.addActionListener(this); 
-	                    highButton.addActionListener(this); 
+	                    String priority = priorityComboBox.getItemAt(priorityComboBox.getSelectedIndex());
+	                    System.out.println("\nPriority: " + priority);
 	                    
 	                    /*if (e.getSource() == lowButton){
 	                    	String priority = lowButton.getActionCommand();
@@ -122,20 +127,7 @@ public class newTask extends JFrame
        } // end of public newTask
        
         
-       public void actionPerformed (ActionEvent e) {
-    	   if (e.getSource() == lowButton) {
-    		   System.out.println("Low"); 
-    		   
-    	   }
-    	   else if (e.getSource() == medButton) {
-    		   System.out.println("Medium"); 
-    		   
-    	   }
-    	   else if (e.getSource() == highButton) {
-    		   System.out.println("High"); 
-    		   
-    	   }
-       }
+
 
        public static void main(String[] args)
        {
