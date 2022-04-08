@@ -55,13 +55,51 @@ customer-project-voltorb created by GitHub Classroom
 - Text box for user to input date into
 6. Task: Assign Group/Project Name
 - Character Limit
-7.Task: Assign Priority levels when creating task
+7. Task: Assign Priority levels when creating task
 - Have Critical, important, medium, low options
-8.Task: Description Text box
+8. Task: Description Text box
 - Text box to input a description of task
-9.Task: Due date calendar
+9. Task: Due date calendar
 - Small panel to represent calendar
 - Arrows to adjust what month is showing 
+
+***Estimated total of stories completed***
+- 7 stores, 44 points
+
+***What was completed***
+1. Opening page: Returning user option
+- Ask for Username
+- Ask for Password
+2. Task Board: Create overall task board/list (flow layout Gframe)
+- Display empty to do list
+- Search bar with filters
+3. Task: Create a new task
+- Create GRects to simulate a task bar
+- Have pressable button to create task 
+4. Task: Assign Due date
+- Small panel that users can hover over to choose date
+- Text box for user to input date into
+5. Task: Assign Group/Project Name
+- Character Limit
+6. Task: Assign Priority levels when creating task
+- Have Critical, important, medium, low options
+7. Task: Description Text box
+- Text box to input a description of task
+
+***How to download project***
+1. Download project from Git repo
+
+***Languages and Libracies needed***
+- java-library'
+- Latest version of 'eclipse'
+- 'org.openjfx.javafxplugin' version '0.0.9'
+- api 'org.apache.commons:commons-math3:3.6.1'
+- implementation 'com.google.guava:guava:28.2-jre'
+- implementation files('lib/acm.jar')
+- testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
+- testImplementation 'org.mockito:mockito-core:2.+'
+- testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "5.${junit5MinorVersion}"
+- testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: "1.${junit5MinorVersion}"
 
 **Sprint 2:**
 
