@@ -105,7 +105,7 @@ public class MenuPane extends GraphicsPane {
 		program.add(user);
 		program.remove(error);
 		program.getGCanvas().add(login, 350, 350);
-
+		//program.getGCanvas().setLayout();
 
 	}
 

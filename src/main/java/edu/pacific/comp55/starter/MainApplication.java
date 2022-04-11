@@ -10,6 +10,8 @@ public class MainApplication extends GraphicsApplication {
 
 	private SomePane somePane;
 	private MenuPane menu;
+	private NewTaskPage newTaskPage;
+
 	private int count;
 
 	public void init() {
@@ -20,6 +22,8 @@ public class MainApplication extends GraphicsApplication {
 		System.out.println("Hello, world!");
 		somePane = new SomePane(this);
 		menu = new MenuPane(this);
+		newTaskPage = new NewTaskPage(this);
+		//taskPage = new TaskPage(this);
 		setupInteractions();
 		switchToMenu();
 	}
@@ -28,6 +32,12 @@ public class MainApplication extends GraphicsApplication {
 		playRandomSound();
 		count++;
 		switchToScreen(menu);
+	}
+	
+	public void switchToTask() {
+		playRandomSound();
+		//count++;
+		switchToScreen(newTaskPage);
 	}
 
 	public void switchToSome() {
