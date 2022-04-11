@@ -2,6 +2,8 @@ package edu.pacific.comp55.starter;
 
 import java.awt.event.ActionEvent;
 
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -12,9 +14,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.time.LocalDate;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import java.util.Date;
+
+import javax.swing.JFormattedTextField;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 
 
 
@@ -29,6 +37,7 @@ public class newTask extends JFrame
        JLabel dateLabel = new JLabel ("Due Date:", JLabel.LEFT); 
        JLabel priorityLabel = new JLabel ("Priority:", JLabel.LEFT); 
        JLabel descriptionLabel = new JLabel ("Description:", JLabel.LEFT);
+       JLabel dateCreatedLabel = new JLabel ("Task Created:", JLabel.LEFT); 
 
        JTextField titleText = new JTextField(20);
 
@@ -38,6 +47,9 @@ public class newTask extends JFrame
        JTextField dateText = new JTextField(20); 
 
        JTextField descriptionText = new JTextField(20); 
+       DateFormat dateFormat = new SimpleDateFormat("dd MMM YYYY");
+       JFormattedTextField today = new JFormattedTextField(dateFormat);
+
 
        String[] priorityOptions = {"Low", "Medium", "High"};
        JComboBox<String> priorityComboBox = new JComboBox<>(priorityOptions);
@@ -66,7 +78,8 @@ public class newTask extends JFrame
               panel.add(categoryText); 
  
               panel.add(dateLabel); 
-              panel.add(dateText); 
+              panel.add(dateText);
+              
               panel.add(priorityLabel); 
               
               //MICHELLE:add buttons here
@@ -78,6 +91,13 @@ public class newTask extends JFrame
               panel.add(descriptionLabel);
               descriptionText.setBounds(100,90,145,100);
               panel.add(descriptionText); 
+              
+              panel.add(dateCreatedLabel); 
+              today.setName("Today");
+              today.setColumns(10);
+              today.setEditable(true);
+              today.setValue(new Date());
+              panel.add(today);
               
               saveButton.setBackground(Color.CYAN);
               saveButton.setOpaque(true);
