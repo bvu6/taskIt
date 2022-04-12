@@ -14,7 +14,9 @@ import acm.graphics.GRect;
 public class SomePane extends GraphicsPane {
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
-	private GImage img;
+	private GImage userIcon;
+	private GImage editIcon;
+	private GImage trashIcon;
 	private GParagraph displayUserName;
 	private GButton rect;
 	private GParagraph userName;
@@ -32,7 +34,9 @@ public class SomePane extends GraphicsPane {
 	
 	public SomePane(MainApplication app) {
 		this.program = app;
-		//img = new GImage("robot head.jpg", 100, 100);
+		userIcon = new GImage("userIcon.png", 5, 5);
+		editIcon = new GImage("editIcon.png", 300,100);
+		trashIcon = new GImage("trashIcon.png", 400,100);
 		
 		topRect = new GRect(1000, 47);
 		//topRect.setFillColor(Color.BLUE);
@@ -62,19 +66,19 @@ public class SomePane extends GraphicsPane {
 		rect = new GButton("Log out", 730, 10, 50, 30);
 		rect.setFillColor(Color.gray);
 		
-		displayUserName = new GParagraph("user name: ", 30, 30);
+		//displayUserName = new GParagraph("User: ", 45, 30);
 		//para.setFont("Arial-24");
-		userName = new GParagraph("David", 95, 30);//will have to get user from MenuPane
+		userName = new GParagraph("David", 45, 30);//will have to get user from MenuPane
+		userName.setColor(Color.white);
 		
 		taskBoardTab = new JButton("Task Board");
 		taskBoardTab.setBounds(0, 75, 150, 50);
-		taskBoardTab.setForeground(new Color (120,158,158));
 		calendarTab = new JButton("Calendar");
 		calendarTab.setBounds(0, 150, 150, 50);
-	    darkMode = new JButton("dark");
-	    darkMode.setBounds(0, 225, 150, 50);
-	    lightMode = new JButton("light");
-	    lightMode.setBounds(0, 224, 150, 50);
+	    darkMode = new JButton("Dark Mode");
+	    darkMode.setBounds(0, 450, 150, 50);
+	    lightMode = new JButton("Light Mode");
+	    lightMode.setBounds(0, 450, 150, 50);
 
 		darkMode.addActionListener(new ActionListener()
         {
@@ -88,7 +92,8 @@ public class SomePane extends GraphicsPane {
                 	program.getGCanvas().add(lightMode);                                 
              }// end of actionPerformed
         }); //end of actionListener
-	    lightMode.addActionListener(new ActionListener() {
+	   
+		lightMode.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		System.out.println("light theme button pressed");
 	    		program.remove(centerRect);
@@ -105,9 +110,14 @@ public class SomePane extends GraphicsPane {
 		program.add(rightRect);
 		//program.add(centerRect);
 
-		program.add(displayUserName);
+		program.add(userIcon);
+		//program.add(displayUserName);
 		program.add(userName);
 		program.add(rect);
+		
+		program.add(editIcon);
+		program.add(trashIcon);
+
 		program.getGCanvas().add(taskBoardTab);
 		program.getGCanvas().add(calendarTab);
 		program.getGCanvas().add(darkMode);
@@ -123,9 +133,14 @@ public class SomePane extends GraphicsPane {
 		program.remove(rightRect);
 		program.remove(centerRect);
 
-		program.remove(displayUserName);
+		program.remove(userIcon);
+		//program.remove(displayUserName);
 		program.remove(userName);
 		program.remove(rect);
+		
+		program.remove(editIcon);
+		program.remove(trashIcon);
+		
 		program.getGCanvas().remove(taskBoardTab);
 		program.getGCanvas().remove(calendarTab);
 		program.getGCanvas().remove(darkMode);
