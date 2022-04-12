@@ -17,8 +17,8 @@ public class SomePane extends GraphicsPane {
 	private GImage userIcon;
 	private GImage editIcon;
 	private GImage trashIcon;
-	private GParagraph displayUserName;
-	private GButton rect;
+	//private GParagraph displayUserName;
+	private GButton logOutButton;
 	private GParagraph userName;
 	
 	private JButton taskBoardTab;
@@ -63,8 +63,8 @@ public class SomePane extends GraphicsPane {
 		centerRect.sendToBack();
 		
 		
-		rect = new GButton("Log out", 730, 10, 50, 30);
-		rect.setFillColor(Color.gray);
+		logOutButton= new GButton("Log out", 730, 10, 50, 30);
+		logOutButton.setFillColor(Color.gray);
 		
 		//displayUserName = new GParagraph("User: ", 45, 30);
 		//para.setFont("Arial-24");
@@ -115,7 +115,7 @@ public class SomePane extends GraphicsPane {
 		program.add(userIcon);
 		//program.add(displayUserName);
 		program.add(userName);
-		program.add(rect);
+		program.add(logOutButton);
 		
 		program.getGCanvas().add(darkMode);
 		
@@ -140,7 +140,7 @@ public class SomePane extends GraphicsPane {
 		program.remove(userIcon);
 		//program.remove(displayUserName);
 		program.remove(userName);
-		program.remove(rect);
+		program.remove(logOutButton);
 		
 		program.remove(editIcon);
 		program.remove(trashIcon);
@@ -148,6 +148,7 @@ public class SomePane extends GraphicsPane {
 		program.getGCanvas().remove(taskBoardTab);
 		program.getGCanvas().remove(calendarTab);
 		program.getGCanvas().remove(darkMode);
+		program.getGCanvas().remove(lightMode);
 		
 
 	}
@@ -156,7 +157,7 @@ public class SomePane extends GraphicsPane {
 	public void mousePressed(MouseEvent e) {
 		//para.setText("you need\nto click\non the eyes\nto go back");
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == rect) {
+		if (obj == logOutButton) {
 			program.switchToMenu();//changed here program.switchToTask()
 		}
 		else if(obj == editIcon) {

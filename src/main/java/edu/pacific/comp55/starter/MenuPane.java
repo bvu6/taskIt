@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.SwingUtilities;
 
 import acm.graphics.GObject;
+import acm.graphics.GRect;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,12 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
-
-
 public class MenuPane extends GraphicsPane {
 	private static final String EXIT_ON_CLOSE = null;
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
+	private GRect background;
+
 	private GButton rect;
 	private JTextField passWord;
 	private JTextField userName;
@@ -38,6 +39,10 @@ public class MenuPane extends GraphicsPane {
 	public MenuPane(MainApplication app) {
 		super();
 		program = app;
+		
+		background = new GRect(0,0,800,600);
+		//background.setColor();
+	
 		rect = new GButton("login", 350, 350, 80, 50);
 		rect.setFillColor(Color.cyan);
 		
@@ -99,6 +104,7 @@ public class MenuPane extends GraphicsPane {
 	@Override
 	public void showContents() {
 		//program.add(rect);
+		program.add(background);
 		program.getGCanvas().add(passWord, 350, 290);//Need to put .getGCanvas().add 
 		program.getGCanvas().add(userName, 350, 260);//Need to put .getGCanvas().add 
 		program.add(pass);
@@ -112,6 +118,7 @@ public class MenuPane extends GraphicsPane {
 	@Override
 	public void hideContents() {
 		//program.remove(rect);
+		program.remove(background);
 		program.getGCanvas().remove(passWord);
 		program.getGCanvas().remove(userName);
 		program.remove(pass);
