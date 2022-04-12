@@ -119,7 +119,7 @@ customer-project-voltorb created by GitHub Classroom
 - Display blank screen 
 16. Task: upload garbage can and pencil pics
 - Images that will represent delete and edit
-17. Task: Create back button
+17. Task: Create log out
 - Button that allows you to go to preview screen
 
 ***Estimated total of stories completed***
@@ -130,10 +130,14 @@ customer-project-voltorb created by GitHub Classroom
 - Take username and have it displayed 
 16. Task: upload garbage can and pencil pics
 - Images that will represent delete and edit
-17. Task: Create back button
+17. Task: Create log out
 - Button that allows you to go to preview screen
 18. Task board: Make the layout nicer with a color theme 
 - Dark & Light mode
 19. Task Board: Tab Buttons
 - Task Board and Calendar
+
+***Total of stories completed***
+- 5 stories, 12 points
+
 
