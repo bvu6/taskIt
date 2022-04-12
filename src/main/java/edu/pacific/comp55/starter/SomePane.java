@@ -21,6 +21,7 @@ public class SomePane extends GraphicsPane {
 	
 	private JButton taskBoardTab;
 	private JButton calendarTab;
+	private JButton darkMode;
 	private JButton lightMode;
 
 	private GRect topRect;
@@ -52,7 +53,7 @@ public class SomePane extends GraphicsPane {
 		rightRect.sendToBack();
 		
 		
-		centerRect = new GRect(90, 47, 610, 800);
+		centerRect = new GRect(150, 47, 550, 800);
 		centerRect.setFillColor(new Color(58,58,58));
 		centerRect.setFilled(true);
 		centerRect.sendToBack();
@@ -70,10 +71,12 @@ public class SomePane extends GraphicsPane {
 		taskBoardTab.setForeground(new Color (120,158,158));
 		calendarTab = new JButton("Calendar");
 		calendarTab.setBounds(0, 150, 150, 50);
-	    lightMode = new JButton("dark");
-	    lightMode.setBounds(0, 225, 150, 50);
+	    darkMode = new JButton("dark");
+	    darkMode.setBounds(0, 225, 150, 50);
+	    lightMode = new JButton("light");
+	    lightMode.setBounds(0, 224, 150, 50);
 
-		lightMode.addActionListener(new ActionListener()
+		darkMode.addActionListener(new ActionListener()
         {
              public void actionPerformed(ActionEvent e)
              {
@@ -81,10 +84,17 @@ public class SomePane extends GraphicsPane {
           	   	System.out.println("dark theme button pressed");
 
                 	program.add(centerRect);
-                                 
+                	program.getGCanvas().remove(darkMode);
+                	program.getGCanvas().add(lightMode);                                 
              }// end of actionPerformed
         }); //end of actionListener
-	    
+	    lightMode.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		System.out.println("light theme button pressed");
+	    		program.remove(centerRect);
+	    		program.getGCanvas().remove(lightMode);
+	    		program.getGCanvas().add(darkMode);	    	}
+	    });
 	}
 
 	@Override
@@ -100,7 +110,7 @@ public class SomePane extends GraphicsPane {
 		program.add(rect);
 		program.getGCanvas().add(taskBoardTab);
 		program.getGCanvas().add(calendarTab);
-		program.getGCanvas().add(lightMode);
+		program.getGCanvas().add(darkMode);
 
 
 	}
@@ -118,7 +128,7 @@ public class SomePane extends GraphicsPane {
 		program.remove(rect);
 		program.getGCanvas().remove(taskBoardTab);
 		program.getGCanvas().remove(calendarTab);
-		program.getGCanvas().remove(lightMode);
+		program.getGCanvas().remove(darkMode);
 		
 
 	}
