@@ -88,6 +88,8 @@ public class SomePane extends GraphicsPane {
           	   	System.out.println("dark theme button pressed");
 
                 	program.add(centerRect);
+                	program.add(editIcon);
+            		program.add(trashIcon);
                 	program.getGCanvas().remove(darkMode);
                 	program.getGCanvas().add(lightMode);                                 
              }// end of actionPerformed
@@ -115,12 +117,14 @@ public class SomePane extends GraphicsPane {
 		program.add(userName);
 		program.add(rect);
 		
+		program.getGCanvas().add(darkMode);
+		
 		program.add(editIcon);
 		program.add(trashIcon);
 
 		program.getGCanvas().add(taskBoardTab);
 		program.getGCanvas().add(calendarTab);
-		program.getGCanvas().add(darkMode);
+		
 
 
 	}
@@ -154,6 +158,12 @@ public class SomePane extends GraphicsPane {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == rect) {
 			program.switchToMenu();//changed here program.switchToTask()
+		}
+		else if(obj == editIcon) {
+			System.out.println("Edit icon pressed");
+		}
+		else if(obj == trashIcon) {
+			System.out.println("Trash icon pressed");
 		}
 	}
 }
