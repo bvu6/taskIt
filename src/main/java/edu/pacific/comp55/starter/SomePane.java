@@ -19,16 +19,14 @@ public class SomePane extends GraphicsPane {
 	private GButton rect;
 	private GParagraph userName;
 	
-	private JButton one;
-	private JButton two;
-	private JButton three;
-	private JButton four;
+	private JButton taskBoardTab;
+	private JButton calendarTab;
+	private JButton lightMode;
 
 	private GRect topRect;
 	private GRect leftRect;
 	private GRect rightRect;
 	private GRect centerRect;
-
 
 	
 	public SomePane(MainApplication app) {
@@ -36,41 +34,46 @@ public class SomePane extends GraphicsPane {
 		//img = new GImage("robot head.jpg", 100, 100);
 		
 		topRect = new GRect(1000, 47);
-		topRect.setFillColor(Color.BLUE);
+		//topRect.setFillColor(Color.BLUE);
+		topRect.setFillColor(new Color(77,100,102));
 		topRect.setFilled(true);
 		topRect.sendToBack();
 		
-		leftRect = new GRect(0, 47, 90, 1000);
-		leftRect.setFillColor(Color.cyan);
+		leftRect = new GRect(0, 47, 150, 1000);
+		//leftRect.setFillColor(Color.cyan);
+		leftRect.setFillColor(new Color (120,158,158));
 		leftRect.setFilled(true);
 		leftRect.sendToBack();
 		
-		rightRect = new GRect(700, 47, 90, 1000);
-		rightRect.setFillColor(Color.black);
+		rightRect = new GRect(700, 47, 400, 1000);
+		//rightRect.setFillColor(Color.black);
+		rightRect.setFillColor(Color.GRAY);
 		rightRect.setFilled(true);
 		rightRect.sendToBack();
 		
 		
 		centerRect = new GRect(90, 47, 610, 800);
-		centerRect.setFillColor(Color.DARK_GRAY);
+		centerRect.setFillColor(new Color(58,58,58));
 		centerRect.setFilled(true);
 		centerRect.sendToBack();
 		
 		
-		
-		rect = new GButton("Log out", 730, 10, 40, 30);
+		rect = new GButton("Log out", 730, 10, 50, 30);
 		rect.setFillColor(Color.gray);
 		
 		displayUserName = new GParagraph("user name: ", 30, 30);
 		//para.setFont("Arial-24");
 		userName = new GParagraph("David", 95, 30);//will have to get user from MenuPane
 		
-	    one = new JButton("one");
-	    two = new JButton("two");
-	    three = new JButton("three");
-	    four = new JButton("dark");
+		taskBoardTab = new JButton("Task Board");
+		taskBoardTab.setBounds(0, 75, 150, 50);
+		taskBoardTab.setForeground(new Color (120,158,158));
+		calendarTab = new JButton("Calendar");
+		calendarTab.setBounds(0, 150, 150, 50);
+	    lightMode = new JButton("dark");
+	    lightMode.setBounds(0, 225, 150, 50);
 
-	    four.addActionListener(new ActionListener()
+		lightMode.addActionListener(new ActionListener()
         {
              public void actionPerformed(ActionEvent e)
              {
@@ -95,12 +98,9 @@ public class SomePane extends GraphicsPane {
 		program.add(displayUserName);
 		program.add(userName);
 		program.add(rect);
-		program.getGCanvas().add(one, 12, 50);
-		program.getGCanvas().add(two, 12, 90);
-		program.getGCanvas().add(three, 12, 130);
-		program.getGCanvas().add(four, 12, 170);
-		
-
+		program.getGCanvas().add(taskBoardTab);
+		program.getGCanvas().add(calendarTab);
+		program.getGCanvas().add(lightMode);
 
 
 	}
@@ -116,10 +116,9 @@ public class SomePane extends GraphicsPane {
 		program.remove(displayUserName);
 		program.remove(userName);
 		program.remove(rect);
-		program.getGCanvas().remove(one);
-		program.getGCanvas().remove(two);
-		program.getGCanvas().remove(three);
-		program.getGCanvas().remove(four);
+		program.getGCanvas().remove(taskBoardTab);
+		program.getGCanvas().remove(calendarTab);
+		program.getGCanvas().remove(lightMode);
 		
 
 	}
