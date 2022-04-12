@@ -27,6 +27,7 @@ public class MenuPane extends GraphicsPane {
 	private GButton rect;
 	private JTextField passWord;
 	private JTextField userName;
+	private GParagraph programTitle;
 	private GParagraph pass;
 	private GParagraph user;
 	private GParagraph error;
@@ -41,13 +42,17 @@ public class MenuPane extends GraphicsPane {
 		program = app;
 		
 		background = new GRect(0,0,800,600);
-		//background.setColor();
-	
-		rect = new GButton("login", 350, 350, 80, 50);
+		background.setFillColor(new Color (120,158,158));
+		background.setFilled(true);
+		
+		programTitle = new GParagraph("VOLTORB'S TO-DO LIST", 315, 225);		
+		
+		
+		rect = new GButton("Login", 350, 350, 80, 50);
 		rect.setFillColor(Color.cyan);
 		
-		pass = new GParagraph("\npassword", 290, 290);
-		user = new GParagraph("user name", 282, 273);
+		pass = new GParagraph("\nPassword", 290, 290);
+		user = new GParagraph("Username", 282, 273);
 		error = new GParagraph("Invalid username or password entered", 300, 335);
 		error.setColor(Color.red);
 
@@ -91,20 +96,18 @@ public class MenuPane extends GraphicsPane {
 	}
 
 	
-	
 	public MenuPane() {
 		//frame.add(textfield);
 		//frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//frame.pack();
 		//frame.setVisible(true);
 	}
-	
-	
 
 	@Override
 	public void showContents() {
 		//program.add(rect);
 		program.add(background);
+		program.add(programTitle);
 		program.getGCanvas().add(passWord, 350, 290);//Need to put .getGCanvas().add 
 		program.getGCanvas().add(userName, 350, 260);//Need to put .getGCanvas().add 
 		program.add(pass);
@@ -119,6 +122,7 @@ public class MenuPane extends GraphicsPane {
 	public void hideContents() {
 		//program.remove(rect);
 		program.remove(background);
+		program.remove(programTitle);
 		program.getGCanvas().remove(passWord);
 		program.getGCanvas().remove(userName);
 		program.remove(pass);
