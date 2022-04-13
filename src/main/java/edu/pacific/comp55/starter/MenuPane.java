@@ -3,6 +3,10 @@ package edu.pacific.comp55.starter;
 import java.awt.Color;
 
 import java.awt.font.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -37,13 +41,14 @@ public class MenuPane extends GraphicsPane {
     JPanel jp = new JPanel();
 
 
-	public MenuPane(MainApplication app) {
+	public MenuPane(MainApplication app) throws IOException {
 		super();
 		program = app;
 		
 		background = new GRect(0,0,800,600);
 		background.setFillColor(new Color (120,158,158));
 		background.setFilled(true);
+		
 		
 		programTitle = new GParagraph("VOLTORB'S TO-DO LIST", 315, 225);		
 		
@@ -59,7 +64,13 @@ public class MenuPane extends GraphicsPane {
 		
 	    //JTextField field3 = new JTextField(10);
 
-		
+		File userInputFile = new File("userInput.txt");
+		userInputFile.createNewFile();
+		FileWriter fw = new FileWriter(userInputFile);
+		PrintWriter pw = new PrintWriter(fw);
+
+	    pw.write("hello");
+
 		passWord = new JTextField(10);
 	    //field1.setText(10);
 	    //add(field1);
@@ -93,6 +104,8 @@ public class MenuPane extends GraphicsPane {
         }); //end of actionListener
         
         //jp.add(login);
+	    pw.close();
+	    
 	}
 
 	
