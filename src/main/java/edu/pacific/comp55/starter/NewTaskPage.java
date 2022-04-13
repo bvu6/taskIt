@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.SwingUtilities;
 
 import acm.graphics.GObject;
+import acm.graphics.GRect;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,9 +27,9 @@ public class NewTaskPage extends GraphicsPane{
 	private JTextField duedate;
 	private JTextField description;
 	//private JTextField priority;
-	private JComboBox priority; 
+	private JComboBox<String> priority; 
 	
-	
+	private GRect background;
 	private GParagraph descriptionPar; 
 	private GParagraph duedatePar; 
 	private GParagraph priorityPar; 
@@ -42,7 +43,9 @@ public class NewTaskPage extends GraphicsPane{
 		this.program = app;
 		//para = new GParagraph("Create New Task", 150, 300);
 		
-		
+		background = new GRect(0,0,800,600);
+		background.setFillColor(new Color (120,158,158));
+		background.setFilled(true);
 		descriptionPar = new GParagraph("\nDescription:", 277, 320);
 		priorityPar = new GParagraph("\nPriority:", 282, 275);
 		duedatePar = new GParagraph("\nDue Date:", 282, 240);
@@ -56,7 +59,7 @@ public class NewTaskPage extends GraphicsPane{
 		String[] priorityOptions = {"Low", "Medium", "High"};
 	    priority = new JComboBox<>(priorityOptions);
 	    priority.setBounds(100, 50, 200, 25);
-	    priority.setVisible(true);
+	   
 	   
 		description = new JTextField(10);
 
@@ -70,7 +73,7 @@ public void showContents() {
 	//program.add(para);
 	
 	//Need to put .getGCanvas().add 
-
+	program.add(background); 
 	program.add(titlePar); 
 	program.add(categoryPar); 
 	program.add(duedatePar); 
@@ -92,6 +95,7 @@ public void hideContents() {
 	//program.remove(para);
 	//program.remove(rect);
 	
+	program.remove(background);
 	program.remove(titlePar); 
 	program.remove(categoryPar); 
 	program.remove(duedatePar);
