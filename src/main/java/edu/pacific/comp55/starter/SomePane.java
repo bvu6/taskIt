@@ -1,5 +1,6 @@
 package edu.pacific.comp55.starter;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -15,14 +16,21 @@ public class SomePane extends GraphicsPane {
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
 	private GImage userIcon;
+	private GImage plusIcon;
+	private GImage whitePlusIcon;
 	private GImage editIcon;
-	private GImage trashIcon;
+	private GImage whiteEditIcon;
+
+	private GImage deleteIcon;
+	private GImage whiteDeleteIcon;
+
 	//private GParagraph displayUserName;
 	private GButton logOutButton;
 	private GParagraph userName;
+	private GParagraph taskBoardTitle;
 	
 	private JButton taskBoardTab;
-	private JButton calendarTab;
+	//private JButton calendarTab;
 	private JButton darkMode;
 	private JButton lightMode;
 
@@ -30,15 +38,23 @@ public class SomePane extends GraphicsPane {
 	private GRect leftRect;
 	private GRect rightRect;
 	private GRect centerRect;
-
+	private GRect taskBoardBox;
+	
 	
 	public SomePane(MainApplication app) {
 		this.program = app;
 		userIcon = new GImage("userIcon.png", 5, 5);
-		editIcon = new GImage("editIcon.png", 300,100);
-		trashIcon = new GImage("trashIcon.png", 400,100);
 		
-		topRect = new GRect(1000, 47);
+		plusIcon = new GImage("plusIcon.png", 440, 150);
+		whitePlusIcon = new GImage("whitePlusIcon.png", 440, 150);
+
+		editIcon = new GImage("editIcon.png", 484, 150);
+		whiteEditIcon = new GImage("whiteEditIcon.png", 484, 150);
+
+		deleteIcon = new GImage("trashIcon.png", 520,150);
+		whiteDeleteIcon = new GImage("whiteTrashIcon.png", 520,150);
+
+		topRect = new GRect(800, 47);
 		//topRect.setFillColor(Color.BLUE);
 		topRect.setFillColor(new Color(77,100,102));
 		topRect.setFilled(true);
@@ -50,9 +66,11 @@ public class SomePane extends GraphicsPane {
 		leftRect.setFilled(true);
 		leftRect.sendToBack();
 		
-		rightRect = new GRect(700, 47, 400, 1000);
+		rightRect = new GRect(600, 47, 200, 1000);
 		//rightRect.setFillColor(Color.black);
-		rightRect.setFillColor(Color.GRAY);
+		//rightRect.setFillColor(Color.GRAY);
+		rightRect.setFillColor(new Color (120,158,158));
+
 		rightRect.setFilled(true);
 		rightRect.sendToBack();
 		
@@ -62,19 +80,25 @@ public class SomePane extends GraphicsPane {
 		centerRect.setFilled(true);
 		centerRect.sendToBack();
 		
+		taskBoardBox = new GRect(200, 75,350,50);
+		taskBoardBox.setFillColor(new Color (120,158,158));
+		taskBoardBox.setFilled(true);
 		
 		logOutButton= new GButton("Log out", 730, 10, 50, 30);
-		logOutButton.setFillColor(Color.gray);
+		//logOutButton.setFillColor(Color.gray);
 		
 		//displayUserName = new GParagraph("User: ", 45, 30);
 		//para.setFont("Arial-24");
 		userName = new GParagraph("David", 45, 30);//will have to get user from MenuPane
 		userName.setColor(Color.white);
 		
+		taskBoardTitle = new GParagraph("TASK BOARD", 300, 108);
+		taskBoardTitle.setFont(new Font("Serif", Font.PLAIN, 24));
+		
 		taskBoardTab = new JButton("Task Board");
 		taskBoardTab.setBounds(0, 75, 150, 50);
-		calendarTab = new JButton("Calendar");
-		calendarTab.setBounds(0, 150, 150, 50);
+		//calendarTab = new JButton("Calendar");
+		//calendarTab.setBounds(0, 150, 150, 50);
 	    darkMode = new JButton("Dark Mode");
 	    darkMode.setBounds(0, 450, 150, 50);
 	    lightMode = new JButton("Light Mode");
@@ -88,8 +112,11 @@ public class SomePane extends GraphicsPane {
           	   	System.out.println("dark theme button pressed");
 
                 	program.add(centerRect);
-                	program.add(editIcon);
-            		program.add(trashIcon);
+                	program.add(taskBoardBox);
+                	program.add(taskBoardTitle);
+                	program.add(whitePlusIcon);
+                	program.add(whiteEditIcon);
+            		program.add(whiteDeleteIcon);
                 	program.getGCanvas().remove(darkMode);
                 	program.getGCanvas().add(lightMode);                                 
              }// end of actionPerformed
@@ -98,7 +125,15 @@ public class SomePane extends GraphicsPane {
 		lightMode.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		System.out.println("light theme button pressed");
-	    		program.remove(centerRect);
+	    		
+            	program.remove(whitePlusIcon);
+            	program.remove(whiteEditIcon);
+        		program.remove(whiteDeleteIcon);
+	    		
+            	program.add(plusIcon);
+            	program.add(editIcon);
+        		program.add(deleteIcon);
+        		program.remove(centerRect);
 	    		program.getGCanvas().remove(lightMode);
 	    		program.getGCanvas().add(darkMode);	    	}
 	    });
@@ -111,19 +146,22 @@ public class SomePane extends GraphicsPane {
 		program.add(leftRect);
 		program.add(rightRect);
 		//program.add(centerRect);
-
+		program.add(taskBoardBox);
+		program.add(taskBoardTitle);
+		
 		program.add(userIcon);
 		//program.add(displayUserName);
+		program.add(plusIcon);
 		program.add(userName);
 		program.add(logOutButton);
 		
 		program.getGCanvas().add(darkMode);
 		
 		program.add(editIcon);
-		program.add(trashIcon);
+		program.add(deleteIcon);
 
 		program.getGCanvas().add(taskBoardTab);
-		program.getGCanvas().add(calendarTab);
+		//program.getGCanvas().add(calendarTab);
 		
 
 
@@ -143,10 +181,10 @@ public class SomePane extends GraphicsPane {
 		program.remove(logOutButton);
 		
 		program.remove(editIcon);
-		program.remove(trashIcon);
+		program.remove(deleteIcon);
 		
 		program.getGCanvas().remove(taskBoardTab);
-		program.getGCanvas().remove(calendarTab);
+		//program.getGCanvas().remove(calendarTab);
 		program.getGCanvas().remove(darkMode);
 		program.getGCanvas().remove(lightMode);
 		
@@ -160,11 +198,14 @@ public class SomePane extends GraphicsPane {
 		if (obj == logOutButton) {
 			program.switchToMenu();//changed here program.switchToTask()
 		}
-		else if(obj == editIcon) {
+		else if(obj == plusIcon || obj == whitePlusIcon) {
+			System.out.println("Create New Task icon pressed");
+		}
+		else if(obj == editIcon || obj == whiteEditIcon) {
 			System.out.println("Edit icon pressed");
 		}
-		else if(obj == trashIcon) {
-			System.out.println("Trash icon pressed");
+		else if(obj == deleteIcon || obj == whiteDeleteIcon) {
+			System.out.println("Delecte icon pressed");
 		}
 	}
 }

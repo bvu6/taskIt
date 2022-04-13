@@ -23,10 +23,6 @@ import javax.swing.JFormattedTextField;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-
-
-
-
 public class newTask extends JFrame
 {
        JPanel panel = new JPanel();
