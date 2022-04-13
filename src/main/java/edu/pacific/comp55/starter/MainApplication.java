@@ -1,5 +1,7 @@
 package edu.pacific.comp55.starter;
 
+import java.io.IOException;
+
 import javax.swing.SwingUtilities;
 
 public class MainApplication extends GraphicsApplication {
@@ -21,7 +23,12 @@ public class MainApplication extends GraphicsApplication {
 	public void run() {
 		System.out.println("Hello, world!");
 		somePane = new SomePane(this);
-		menu = new MenuPane(this);
+		try {
+			menu = new MenuPane(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		newTaskPage = new NewTaskPage(this);
 		//taskPage = new TaskPage(this);
 		setupInteractions();
