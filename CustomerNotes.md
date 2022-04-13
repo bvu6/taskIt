@@ -13,3 +13,14 @@
   - Connect all the panes to have it all flow together
   - Check for invalid input from user during the login screen
   - Input an error message if login is not correct
+
+**Sprint 2:**
+* Provide insights for what you all saw the customer do with the project:
+ - Clicked on all the tabs and buttons
+ - Changed the task creation date 
+ - The user didn't update 
+
+* Feedback from Customer:
+- Change the buttons to correspond to the light modes
+- Change the right side pane to match the left side
+- Don't update the date of task creation when editing 
