@@ -40,7 +40,6 @@ public class SomePane extends GraphicsPane {
 	private GRect centerRect;
 	private GRect taskBoardBox;
 	
-	
 	public SomePane(MainApplication app) {
 		this.program = app;
 		userIcon = new GImage("userIcon.png", 5, 5);
