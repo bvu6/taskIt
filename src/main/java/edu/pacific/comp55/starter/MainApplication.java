@@ -41,15 +41,15 @@ public class MainApplication extends GraphicsApplication {
 		switchToScreen(menu);
 	}
 	
+	public void switchToSome() { //switches to the main Task Board
+		playRandomSound();
+		switchToScreen(somePane);
+	}
+	
 	public void switchToTask() {
 		playRandomSound();
 		//count++;
 		switchToScreen(newTaskPage);
-	}
-
-	public void switchToSome() {
-		playRandomSound();
-		switchToScreen(somePane);
 	}
 
 	private void playRandomSound() {

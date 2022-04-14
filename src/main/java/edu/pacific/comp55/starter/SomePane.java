@@ -133,8 +133,19 @@ public class SomePane extends GraphicsPane {
         		program.add(deleteIcon);
         		program.remove(centerRect);
 	    		program.getGCanvas().remove(lightMode);
-	    		program.getGCanvas().add(darkMode);	    	}
+	    		program.getGCanvas().add(darkMode);	    	
+	    	}
 	    });
+		plusIcon.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		System.out.println("Create new task button pressed");
+            	
+	    		hideContents();
+	    		program.switchToTask();
+
+	    	}
+	    });
+
 	}
 
 	@Override
@@ -160,8 +171,6 @@ public class SomePane extends GraphicsPane {
 
 		program.getGCanvas().add(taskBoardTab);
 		//program.getGCanvas().add(calendarTab);
-		
-
 
 	}
 
@@ -194,16 +203,18 @@ public class SomePane extends GraphicsPane {
 		//para.setText("you need\nto click\non the eyes\nto go back");
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == logOutButton) {
+			System.out.println("Log out button pressed");
 			program.switchToMenu();//changed here program.switchToTask()
 		}
 		else if(obj == plusIcon || obj == whitePlusIcon) {
-			System.out.println("Create New Task icon pressed");
+			System.out.println("Create new task icon pressed");
+			program.switchToTask();
 		}
 		else if(obj == editIcon || obj == whiteEditIcon) {
 			System.out.println("Edit icon pressed");
 		}
 		else if(obj == deleteIcon || obj == whiteDeleteIcon) {
-			System.out.println("Delecte icon pressed");
+			System.out.println("Delete icon pressed");
 		}
 	}
 }

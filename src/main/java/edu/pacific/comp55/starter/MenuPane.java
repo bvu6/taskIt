@@ -97,7 +97,7 @@ public class MenuPane extends GraphicsPane {
                 	program.add(error);
                 }
                 else {
-                	program.switchToTask();
+                	program.switchToSome();
                 	program.remove(error);
                 }
                     
