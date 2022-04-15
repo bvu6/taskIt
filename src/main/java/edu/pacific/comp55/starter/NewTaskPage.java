@@ -161,7 +161,7 @@ public void hideContents() {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == backArrow) {
-			System.out.println("Back arrow pressed, Task NOT saved");
+			System.out.println("Back arrow pressed");
 			hideContents();
 			program.switchToSome();
 		}

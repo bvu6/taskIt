@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -14,12 +15,13 @@ import acm.graphics.GRect;
 public class SomePane extends GraphicsPane {
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
+	private JComboBox<String> filter; 
+
 	private GImage userIcon;
 	private GImage plusIcon;
 	private GImage whitePlusIcon;
 	private GImage editIcon;
 	private GImage whiteEditIcon;
-
 	private GImage deleteIcon;
 	private GImage whiteDeleteIcon;
 
@@ -51,6 +53,12 @@ public class SomePane extends GraphicsPane {
 
 		deleteIcon = new GImage("trashIcon.png", 520,150);
 		whiteDeleteIcon = new GImage("whiteTrashIcon.png", 520,150);
+		
+		String[] filterOptions = {"Date Created","Due Date", "Priority", "Project"};
+	    filter = new JComboBox<>(filterOptions);
+	    filter.setBounds(80, 70, 150, 20);
+	    filter.setForeground(Color.black);
+	    filter.setBackground(Color.white);
 
 		topRect = new GRect(800, 47);
 		//topRect.setFillColor(Color.BLUE);
@@ -115,6 +123,10 @@ public class SomePane extends GraphicsPane {
                 	program.add(whitePlusIcon);
                 	program.add(whiteEditIcon);
             		program.add(whiteDeleteIcon);
+            		
+            		program.getGCanvas().add(filter,200,160);
+            		program.getGCanvas().revalidate(); 
+
             		logOutButton.setFillColor(Color.gray);
                 	program.getGCanvas().add(logOutButton);                                 
             		logOutButton.setFillColor(Color.gray);
@@ -134,6 +146,9 @@ public class SomePane extends GraphicsPane {
             	program.add(plusIcon);
             	program.add(editIcon);
         		program.add(deleteIcon);
+        		program.getGCanvas().add(filter,200,160);
+        		program.getGCanvas().revalidate(); 
+
         		program.remove(centerRect);
         		logOutButton.setFillColor(Color.white);
         		program.add(logOutButton);
@@ -176,6 +191,9 @@ public class SomePane extends GraphicsPane {
 		
 		program.add(editIcon);
 		program.add(deleteIcon);
+		program.getGCanvas().add(filter,200,160);
+		program.getGCanvas().revalidate(); 
+
 
 		//program.getGCanvas().add(taskBoardTab);
 		//program.getGCanvas().add(calendarTab);
@@ -197,6 +215,8 @@ public class SomePane extends GraphicsPane {
 		
 		program.remove(editIcon);
 		program.remove(deleteIcon);
+		program.getGCanvas().remove(filter);
+
 		
 		//program.getGCanvas().remove(taskBoardTab);
 		//program.getGCanvas().remove(calendarTab);
