@@ -29,7 +29,7 @@ public class MenuPane extends GraphicsPane {
 										// all of the GraphicsProgram calls
 	private GRect background;
 
-	private GButton rect;
+	private GButton Login;
 	private JTextField passWord;
 	private JTextField userName;
 	private GParagraph programTitle;
@@ -54,8 +54,8 @@ public class MenuPane extends GraphicsPane {
 		programTitle = new GParagraph("VOLTORB'S TO-DO LIST", 315, 225);		
 		
 		
-		rect = new GButton("Login", 350, 350, 80, 50);
-		rect.setFillColor(Color.cyan);
+		Login = new GButton("Login", 350, 350, 80, 50);
+		Login.setFillColor(Color.cyan);
 		
 		pass = new GParagraph("\nPassword", 290, 290);
 		user = new GParagraph("Username", 282, 273);
@@ -77,7 +77,7 @@ public class MenuPane extends GraphicsPane {
 	    //add(field1);
 	    userName = new JTextField(10);
 	    //field2.setText("          ");
-	    login = new JButton("login");
+	    login = new JButton("Login");
 	    
 	    
 	    login.addActionListener(new ActionListener()
@@ -150,7 +150,7 @@ public class MenuPane extends GraphicsPane {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == rect) {
+		if (obj == Login) {
 			program.switchToTask();
 		}
 	}

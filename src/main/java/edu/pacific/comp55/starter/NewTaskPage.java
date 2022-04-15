@@ -12,6 +12,7 @@ import javax.swing.SwingUtilities;
 
 import acm.graphics.GObject;
 import acm.graphics.GRect;
+import acm.graphics.GImage;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -38,7 +39,9 @@ public class NewTaskPage extends GraphicsPane{
 	private GParagraph titlePar; 
 	private GParagraph createNewPar; 
 
-	private JButton save; 
+	private GImage backArrow;
+
+	private JButton save;
 	
 	public NewTaskPage(MainApplication app) {
 
@@ -68,6 +71,7 @@ public class NewTaskPage extends GraphicsPane{
 		description = new JTextField(10);
 
 		save = new JButton("Save");
+		backArrow = new GImage("backArrow.png");
 		
 		save.addActionListener(new ActionListener()
          {
@@ -91,10 +95,19 @@ public class NewTaskPage extends GraphicsPane{
                    
            	   	String descriptionPrint = description.getText();
                    System.out.println("\nDescription: " + descriptionPrint);
+                   
+                program.switchToSome();
                      
               }// end of actionPerformed
          });
 		
+		backArrow.addActionListener(new ActionListener()
+        {
+             public void actionPerformed(ActionEvent e)
+             {
+          	   	System.out.println("Back button pressed");
+             }// end of actionPerformed
+        });
 	}
 	
 
@@ -118,6 +131,7 @@ public void showContents() {
 	program.getGCanvas().revalidate(); 
 	program.getGCanvas().add(description, 350, 310);
 	program.getGCanvas().add(save, 350, 340);
+	program.getGCanvas().add(backArrow);
 }
 
 @Override
@@ -139,11 +153,19 @@ public void hideContents() {
 	program.getGCanvas().remove(priority);
 	program.getGCanvas().remove(description);
 	program.getGCanvas().remove(save);
+	program.getGCanvas().remove(backArrow);
+
 }
 
 @Override
 	public void mousePressed(MouseEvent e) {
-		//para.setText("you need\nto click\non the eyes\nto go back");
+		GObject obj = program.getElementAt(e.getX(), e.getY());
+		if (obj == backArrow) {
+			System.out.println("Back arrow pressed, Task NOT saved");
+			hideContents();
+			program.switchToSome();
+		}
+
 		
 	}
 }

@@ -28,7 +28,7 @@ public class SomePane extends GraphicsPane {
 	private GParagraph userName;
 	private GParagraph taskBoardTitle;
 	
-	private JButton taskBoardTab;
+	//private JButton taskBoardTab;
 	//private JButton calendarTab;
 	private JButton darkMode;
 	private JButton lightMode;
@@ -83,18 +83,17 @@ public class SomePane extends GraphicsPane {
 		taskBoardBox.setFilled(true);
 		
 		logOutButton= new GButton("Log out", 730, 10, 50, 30);
-		//logOutButton.setFillColor(Color.gray);
 		
 		//displayUserName = new GParagraph("User: ", 45, 30);
 		//para.setFont("Arial-24");
-		userName = new GParagraph("David", 45, 30);//will have to get user from MenuPane
+		userName = new GParagraph("David", 45, 30);//**will have to get user from MenuPane
 		userName.setColor(Color.white);
 		
 		taskBoardTitle = new GParagraph("TASK BOARD", 300, 108);
 		taskBoardTitle.setFont(new Font("Serif", Font.PLAIN, 24));
 		
-		taskBoardTab = new JButton("Task Board");
-		taskBoardTab.setBounds(0, 75, 150, 50);
+		//taskBoardTab = new JButton("Task Board");
+		//taskBoardTab.setBounds(0, 75, 150, 50);
 		//calendarTab = new JButton("Calendar");
 		//calendarTab.setBounds(0, 150, 150, 50);
 	    darkMode = new JButton("Dark Mode");
@@ -110,11 +109,15 @@ public class SomePane extends GraphicsPane {
           	   	System.out.println("dark theme button pressed");
 
                 	program.add(centerRect);
+                	program.add(rightRect);
                 	program.add(taskBoardBox);
                 	program.add(taskBoardTitle);
                 	program.add(whitePlusIcon);
                 	program.add(whiteEditIcon);
             		program.add(whiteDeleteIcon);
+            		logOutButton.setFillColor(Color.gray);
+                	program.getGCanvas().add(logOutButton);                                 
+            		logOutButton.setFillColor(Color.gray);
                 	program.getGCanvas().remove(darkMode);
                 	program.getGCanvas().add(lightMode);                                 
              }// end of actionPerformed
@@ -132,7 +135,12 @@ public class SomePane extends GraphicsPane {
             	program.add(editIcon);
         		program.add(deleteIcon);
         		program.remove(centerRect);
+        		logOutButton.setFillColor(Color.white);
+        		program.add(logOutButton);
 	    		program.getGCanvas().remove(lightMode);
+	    		//**Still does not change colors
+	    		darkMode.setBackground(Color.gray);
+	    		darkMode.setOpaque(true);
 	    		program.getGCanvas().add(darkMode);	    	
 	    	}
 	    });
@@ -169,7 +177,7 @@ public class SomePane extends GraphicsPane {
 		program.add(editIcon);
 		program.add(deleteIcon);
 
-		program.getGCanvas().add(taskBoardTab);
+		//program.getGCanvas().add(taskBoardTab);
 		//program.getGCanvas().add(calendarTab);
 
 	}
@@ -190,7 +198,7 @@ public class SomePane extends GraphicsPane {
 		program.remove(editIcon);
 		program.remove(deleteIcon);
 		
-		program.getGCanvas().remove(taskBoardTab);
+		//program.getGCanvas().remove(taskBoardTab);
 		//program.getGCanvas().remove(calendarTab);
 		program.getGCanvas().remove(darkMode);
 		program.getGCanvas().remove(lightMode);
