@@ -3,6 +3,7 @@ package edu.pacific.comp55.starter;
 import java.awt.Color;
 
 
+
 import java.awt.font.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +25,7 @@ public class NewTaskPage extends GraphicsPane{
 	
 	private JTextField title;
 	private JTextField category;
-	private JTextField duedate;
+	private JTextField dueDate;
 	private JTextField description;
 	//private JTextField priority;
 	private JComboBox<String> priority; 
@@ -35,58 +36,88 @@ public class NewTaskPage extends GraphicsPane{
 	private GParagraph priorityPar; 
 	private GParagraph categoryPar; 
 	private GParagraph titlePar; 
+	private GParagraph createNewPar; 
 
 	private JButton save; 
 	
 	public NewTaskPage(MainApplication app) {
 
 		this.program = app;
-		//para = new GParagraph("Create New Task", 150, 300);
 		
 		background = new GRect(0,0,800,600);
 		background.setFillColor(new Color (120,158,158));
 		background.setFilled(true);
-		descriptionPar = new GParagraph("\nDescription:", 277, 320);
+		descriptionPar = new GParagraph("\nDescription:", 277, 310);
 		priorityPar = new GParagraph("\nPriority:", 282, 275);
 		duedatePar = new GParagraph("\nDue Date:", 282, 240);
 		categoryPar = new GParagraph("\nCategory:", 282, 205);
 		titlePar = new GParagraph("Title:", 290, 185);
+		createNewPar = new GParagraph("Create New Task", 340, 135); 
 		
 		title = new JTextField(10);
 		category = new JTextField(10);
-		duedate = new JTextField(10);
+		dueDate = new JTextField(10);
 		//priority = new JTextField(10);
 		String[] priorityOptions = {"Low", "Medium", "High"};
 	    priority = new JComboBox<>(priorityOptions);
-	    priority.setBounds(100, 50, 200, 25);
+	    priority.setBounds(80, 50, 135, 20);
+	    priority.setForeground(Color.black);
+	    priority.setBackground(Color.white);
 	   
 	   
 		description = new JTextField(10);
 
 		save = new JButton("Save");
 		
+		save.addActionListener(new ActionListener()
+         {
+              public void actionPerformed(ActionEvent e)
+              {
+                     
+           	   	System.out.println("Save button pressed");
+
+           	   	String titlePrint = title.getText();
+                   System.out.println("\nTitle: " + titlePrint);
+                   
+           	   	String categoryPrint = category.getText();
+                   System.out.println("\nGroup: " + categoryPrint);
+                   
+           	   	String dueDatePrint = dueDate.getText();
+                   System.out.println("\nDue Date: " + dueDatePrint);
+                   
+                String priorityPrint = priority.getItemAt(priority.getSelectedIndex());
+                   System.out.println("\nPriority: " + priorityPrint);
+
+                   
+           	   	String descriptionPrint = description.getText();
+                   System.out.println("\nDescription: " + descriptionPrint);
+                     
+              }// end of actionPerformed
+         });
+		
 	}
+	
 
 @Override
 public void showContents() {
-	//program.add(img);
-	//program.add(para);
 	
 	//Need to put .getGCanvas().add 
 	program.add(background); 
+	program.add(createNewPar); 
 	program.add(titlePar); 
 	program.add(categoryPar); 
 	program.add(duedatePar); 
 	program.add(priorityPar); 
 	program.add(descriptionPar); 
+	program.getGCanvas().repaint();
 	program.getGCanvas().add(title, 350, 170);
 	program.getGCanvas().add(category, 350, 200);
-	program.getGCanvas().add(duedate, 350, 237);
-	//program.getGCanvas().add(priority, 350, 275);
+	program.getGCanvas().add(dueDate, 350, 237);
+	
 	program.getGCanvas().add(priority, 350,275); 
-	program.getGCanvas().add(description, 350, 320);
-	program.getGCanvas().add(save, 350, 350);
-	//program.add(rect);
+	program.getGCanvas().revalidate(); 
+	program.getGCanvas().add(description, 350, 310);
+	program.getGCanvas().add(save, 350, 340);
 }
 
 @Override
@@ -96,6 +127,7 @@ public void hideContents() {
 	//program.remove(rect);
 	
 	program.remove(background);
+	program.remove(createNewPar); 
 	program.remove(titlePar); 
 	program.remove(categoryPar); 
 	program.remove(duedatePar);
@@ -103,7 +135,7 @@ public void hideContents() {
 	program.remove(descriptionPar);
 	program.getGCanvas().remove(title);
 	program.getGCanvas().remove(category);
-	program.getGCanvas().remove(duedate);
+	program.getGCanvas().remove(dueDate);
 	program.getGCanvas().remove(priority);
 	program.getGCanvas().remove(description);
 	program.getGCanvas().remove(save);
