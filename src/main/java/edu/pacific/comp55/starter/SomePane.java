@@ -225,7 +225,7 @@ public class SomePane extends GraphicsPane {
 		
 
 	}
-
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		//para.setText("you need\nto click\non the eyes\nto go back");

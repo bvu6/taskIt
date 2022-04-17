@@ -15,7 +15,9 @@ public class MainApplication extends GraphicsApplication {
 	private NewTaskPage newTaskPage;
 
 	private int count;
-
+	
+	public String currentPane;
+	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	}
@@ -38,20 +40,25 @@ public class MainApplication extends GraphicsApplication {
 	public void switchToMenu() {
 		playRandomSound();
 		count++;
+		currentPane = "Menu pane";
 		switchToScreen(menu);
 	}
 	
 	public void switchToSome() { //switches to the main Task Board
 		playRandomSound();
+		currentPane = "Some pane";
 		switchToScreen(somePane);
 	}
 	
 	public void switchToTask() {
 		playRandomSound();
+		currentPane = "Task pane";
 		//count++;
 		switchToScreen(newTaskPage);
 	}
-
+	public String getCurrentPane() {
+		return currentPane;
+	}
 	private void playRandomSound() {
 		AudioPlayer audio = AudioPlayer.getInstance();
 		audio.playSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
