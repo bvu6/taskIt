@@ -110,9 +110,8 @@ public class NewTaskPage extends GraphicsPane{
            	   	String categoryPrint = category.getText();
                    System.out.println("\nGroup: " + categoryPrint);
                    
-           	   	//Local dueDatePrint = datePicker.getValue();
-                   //System.out.println("\nDue Date: " + dueDatePrint);
-                   
+                System.out.println("\nDueDate: " + datePicker.getModel().getValue());
+                
                 String priorityPrint = priority.getItemAt(priority.getSelectedIndex());
                    System.out.println("\nPriority: " + priorityPrint);
 
