@@ -27,6 +27,7 @@ import java.sql.*;
 import java.util.*;
 import java.util.Calendar;
 import java.util.Date;
+import java.time.LocalDate; 
 import org.jdatepicker.impl.*;
 import org.jdatepicker.util.*;
 import org.jdatepicker.*;
@@ -36,7 +37,7 @@ public class NewTaskPage extends GraphicsPane{
 	
 	private JTextField title;
 	private JTextField category;
-	private JTextField dueDate;
+	//private JTextField dueDate;
 	private JTextField description;
 	//private JTextField priority;
 	private JComboBox<String> priority; 
@@ -52,7 +53,7 @@ public class NewTaskPage extends GraphicsPane{
 	private UtilDateModel model; 
 	private JDatePanelImpl datePanel; 
 	private JDatePickerImpl datePicker; 
-	private Properties p; 
+	private Properties property; 
 
 	private GImage backArrow;
 
@@ -74,14 +75,14 @@ public class NewTaskPage extends GraphicsPane{
 		
 		title = new JTextField(10);
 		category = new JTextField(10);
-		dueDate = new JTextField(10);
+		//dueDate = new JTextField(10);
 		
 		model = new UtilDateModel();
-		p = new Properties();
-		p.put("text.today", "Today");
-		p.put("text.month", "Month");
-		p.put("text.year", "Year");
-		datePanel = new JDatePanelImpl(model, p);
+		property = new Properties();
+		property.put("text.today", "Today");
+		property.put("text.month", "Month");
+		property.put("text.year", "Year");
+		datePanel = new JDatePanelImpl(model, property);
 		datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
 		//priority = new JTextField(10);
 		String[] priorityOptions = {"Low", "Medium", "High"};
@@ -109,8 +110,8 @@ public class NewTaskPage extends GraphicsPane{
            	   	String categoryPrint = category.getText();
                    System.out.println("\nGroup: " + categoryPrint);
                    
-           	   	String dueDatePrint = dueDate.getText();
-                   System.out.println("\nDue Date: " + dueDatePrint);
+           	   	//Local dueDatePrint = datePicker.getValue();
+                   //System.out.println("\nDue Date: " + dueDatePrint);
                    
                 String priorityPrint = priority.getItemAt(priority.getSelectedIndex());
                    System.out.println("\nPriority: " + priorityPrint);
