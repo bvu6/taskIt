@@ -4,6 +4,7 @@ import java.awt.Color;
 
 
 
+
 import java.awt.font.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +21,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+
+import java.sql.*;
+import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import org.jdatepicker.impl.*;
+import org.jdatepicker.util.*;
+import org.jdatepicker.*;
 
 public class NewTaskPage extends GraphicsPane{
 	private MainApplication program; 
@@ -38,6 +48,11 @@ public class NewTaskPage extends GraphicsPane{
 	private GParagraph categoryPar; 
 	private GParagraph titlePar; 
 	private GParagraph createNewPar; 
+	
+	private UtilDateModel model; 
+	private JDatePanelImpl datePanel; 
+	private JDatePickerImpl datePicker; 
+	private Properties p; 
 
 	private GImage backArrow;
 
@@ -60,6 +75,14 @@ public class NewTaskPage extends GraphicsPane{
 		title = new JTextField(10);
 		category = new JTextField(10);
 		dueDate = new JTextField(10);
+		
+		model = new UtilDateModel();
+		p = new Properties();
+		p.put("text.today", "Today");
+		p.put("text.month", "Month");
+		p.put("text.year", "Year");
+		datePanel = new JDatePanelImpl(model, p);
+		datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
 		//priority = new JTextField(10);
 		String[] priorityOptions = {"Low", "Medium", "High"};
 	    priority = new JComboBox<>(priorityOptions);
@@ -125,8 +148,8 @@ public void showContents() {
 	program.getGCanvas().repaint();
 	program.getGCanvas().add(title, 350, 170);
 	program.getGCanvas().add(category, 350, 200);
-	program.getGCanvas().add(dueDate, 350, 237);
-	
+	//program.getGCanvas().add(dueDate, 350, 237);
+	program.getGCanvas().add(datePicker, 350, 237); 
 	program.getGCanvas().add(priority, 350,275); 
 	program.getGCanvas().revalidate(); 
 	program.getGCanvas().add(description, 350, 310);
@@ -149,7 +172,7 @@ public void hideContents() {
 	program.remove(descriptionPar);
 	program.getGCanvas().remove(title);
 	program.getGCanvas().remove(category);
-	program.getGCanvas().remove(dueDate);
+	program.getGCanvas().remove(datePicker);
 	program.getGCanvas().remove(priority);
 	program.getGCanvas().remove(description);
 	program.getGCanvas().remove(save);
