@@ -90,6 +90,8 @@ customer-project-voltorb created by GitHub Classroom
 1. Download project from Git repo
 
 ***Languages and Libracies needed***
+- Download jdatepicker-1.3.4.jar (For date picker to work in newTaskPage.java file)
+  - go to Preferences -> Java build path -> Libraries -> Classpath -> add external jre -> press on .jar file, then apply
 - java-library'
 - Latest version of 'eclipse'
 - 'org.openjfx.javafxplugin' version '0.0.9'
