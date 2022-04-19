@@ -3,11 +3,14 @@ package edu.pacific.comp55.starter;
 import java.awt.Color;
 
 
+
 import java.awt.font.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -21,7 +24,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class MenuPane extends GraphicsPane {
 	private static final String EXIT_ON_CLOSE = null;
@@ -41,6 +47,9 @@ public class MenuPane extends GraphicsPane {
 	private JButton login;
     JPanel jp = new JPanel();
 
+    private String fileName = "src/main/java/edu/pacific/comp55/starter/userpwd.txt";
+    private List<String> userList = new ArrayList<>();
+    private List<String> pwdList = new ArrayList<>();
 
 	public MenuPane(MainApplication app) throws IOException {
 		super();
@@ -71,7 +80,9 @@ public class MenuPane extends GraphicsPane {
 		PrintWriter pw = new PrintWriter(fw);
 
 	    pw.write("hello");
-
+	    
+	    getLoginInfo(fileName);
+	    
 		passWord = new JTextField(10);
 	    //field1.setText(10);
 	    //add(field1);
@@ -96,9 +107,17 @@ public class MenuPane extends GraphicsPane {
                 if(user.equals("") || pass.equals("")) {
                 	program.add(error);
                 }
+                else if(userList.contains(user)) {
+                	if(pwdList.contains(pass)) {
+                		program.remove(error);
+                		program.switchToSome();
+                	}
+                	else {
+                		program.add(error);
+                	}
+                }
                 else {
-                	program.switchToSome();
-                	program.remove(error);
+                	program.add(error);
                 }
                     
              }// end of actionPerformed
@@ -108,7 +127,25 @@ public class MenuPane extends GraphicsPane {
 	    pw.close();
 	    
 	}
-
+	
+	public void getLoginInfo(String Filename) {
+		File file = new File(Filename);
+	    Scanner sc = null;
+	    String login = "";
+		try {
+			sc = new Scanner(file.getAbsoluteFile());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 
+	    while (sc.hasNextLine()) {
+	      login = sc.nextLine();
+	      String[] arrOfStr = login.split(",", 0);
+	        userList.add(arrOfStr[0]);
+	        pwdList.add(arrOfStr[1]);
+	    }
+	}
 	
 	public MenuPane() {
 		//frame.add(textfield);
