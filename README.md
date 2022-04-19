@@ -86,6 +86,9 @@ customer-project-voltorb created by GitHub Classroom
 7. Task: Description Text box
 - Text box to input a description of task
 
+***Total of stories completed***
+- 7 stories, 44 points
+
 ***How to download project***
 1. Download project from Git repo
 
@@ -102,6 +105,8 @@ customer-project-voltorb created by GitHub Classroom
 - testImplementation 'org.mockito:mockito-core:2.+'
 - testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "5.${junit5MinorVersion}"
 - testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: "1.${junit5MinorVersion}"
+
+
 
 **Sprint 2:**
 
@@ -142,14 +147,15 @@ customer-project-voltorb created by GitHub Classroom
 ***Total of stories completed***
 - 5 stories, 12 points
 
-
 **Sprint 3:**
 20. Date picker
+- Display Month
+- Clickable boxes
 21. Icons corresponds to light and dark mode
 22. Creating Task Button
 23. Opening page: Check login based on saved username and password
-24. 
-
+24. Task Board: Make the layout nicer with color theme (Dark Mode)
+25. Take the user name input and display it at the top
 
 ***Estimated total of stories completed***
 - 7 stories, 44 points
