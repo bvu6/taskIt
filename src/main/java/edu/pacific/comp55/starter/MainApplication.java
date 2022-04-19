@@ -43,6 +43,10 @@ public class MainApplication extends GraphicsApplication {
 		currentPane = "Menu pane";
 		switchToScreen(menu);
 	}
+	public void setUser(String user) {
+		somePane.setUser(user);
+	}
+	
 	
 	public void switchToSome() { //switches to the main Task Board
 		playRandomSound();

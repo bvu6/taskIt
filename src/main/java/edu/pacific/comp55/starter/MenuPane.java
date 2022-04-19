@@ -110,6 +110,7 @@ public class MenuPane extends GraphicsPane {
                 else if(userList.contains(user)) {
                 	if(pwdList.contains(pass)) {
                 		program.remove(error);
+                		program.setUser(user);
                 		program.switchToSome();
                 	}
                 	else {

@@ -30,6 +30,8 @@ public class SomePane extends GraphicsPane {
 	private GParagraph userName;
 	private GParagraph taskBoardTitle;
 	
+	public String User = "default"; 
+	
 	//private JButton taskBoardTab;
 	//private JButton calendarTab;
 	private JButton darkMode;
@@ -40,6 +42,14 @@ public class SomePane extends GraphicsPane {
 	private GRect rightRect;
 	private GRect centerRect;
 	private GRect taskBoardBox;
+	
+	public void setUser(String user) {
+		User = user;
+		program.remove(userName);
+		userName = new GParagraph(User, 45, 30);//**will have to get user from MenuPane
+		userName.setColor(Color.white);
+		program.add(userName);
+	}
 	
 	public SomePane(MainApplication app) {
 		this.program = app;
@@ -94,7 +104,7 @@ public class SomePane extends GraphicsPane {
 		
 		//displayUserName = new GParagraph("User: ", 45, 30);
 		//para.setFont("Arial-24");
-		userName = new GParagraph("David", 45, 30);//**will have to get user from MenuPane
+		userName = new GParagraph(User, 45, 30);//**will have to get user from MenuPane
 		userName.setColor(Color.white);
 		
 		taskBoardTitle = new GParagraph("TASK BOARD", 300, 108);
