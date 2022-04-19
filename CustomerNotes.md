@@ -24,3 +24,15 @@
 - Change the buttons to correspond to the light modes
 - Change the right side pane to match the left side
 - Don't update the date of task creation when editing 
+
+**Sprint 3:**
+* Provide insights for what you all saw the customer do with the project:
+ - The create task page would still have the information from the last entry
+ - The calendar stops working (Unknonwn reason/Was not able to replicate the actions that caused the errors)
+
+* Feedback from Customer:
+- Have the create task page correspond to the light/dark modes
+- Have the drop down box also correspond to the light/dark modes (Consistant theme layout)
+
+
+
