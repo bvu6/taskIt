@@ -143,3 +143,16 @@ customer-project-voltorb created by GitHub Classroom
 - 5 stories, 12 points
 
 
+**Sprint 3:**
+20. Date picker
+21. Icons corresponds to light and dark mode
+22. Creating Task Button
+23. Opening page: Check login based on saved username and password
+24. 
+
+
+***Estimated total of stories completed***
+- 7 stories, 44 points
+
+***Total of stories completed***
+- 6 stories, 31 points
