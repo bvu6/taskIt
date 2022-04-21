@@ -59,6 +59,8 @@ public class NewTaskPage extends GraphicsPane{
 
 	private JButton save;
 	
+	private int taskID; 
+	
 	public NewTaskPage(MainApplication app) {
 
 		this.program = app;
@@ -97,13 +99,17 @@ public class NewTaskPage extends GraphicsPane{
 		save = new JButton("Save");
 		backArrow = new GImage("backArrow.png");
 		
+		
 		save.addActionListener(new ActionListener()
          {
               public void actionPerformed(ActionEvent e)
               {
                      
            	   	System.out.println("Save button pressed");
-
+           	   	
+           	   	taskID++; 
+           	   	System.out.println("\nTaskID: " + taskID);
+           	   	
            	   	String titlePrint = title.getText();
                    System.out.println("\nTitle: " + titlePrint);
                    
@@ -120,6 +126,12 @@ public class NewTaskPage extends GraphicsPane{
                    System.out.println("\nDescription: " + descriptionPrint);
                    
                 program.switchToSome();
+                
+                title.setText(""); 
+                category.setText(""); 
+                datePicker.getJFormattedTextField().setText("");
+                priority.setSelectedIndex(0);
+                description.setText(""); 
                      
               }// end of actionPerformed
          });

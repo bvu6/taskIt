@@ -51,6 +51,9 @@ public class SomePane extends GraphicsPane {
 		program.add(userName);
 	}
 	
+	
+
+	
 	public SomePane(MainApplication app) {
 		this.program = app;
 		userIcon = new GImage("userIcon.png", 5, 5);
