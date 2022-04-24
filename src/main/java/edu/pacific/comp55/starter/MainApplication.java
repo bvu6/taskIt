@@ -1,5 +1,6 @@
 package edu.pacific.comp55.starter;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.SwingUtilities;
@@ -14,6 +15,8 @@ public class MainApplication extends GraphicsApplication {
 	private MenuPane menu;
 	private NewTaskPage newTaskPage;
 
+	private static FileWriter file;
+
 	private int count;
 	
 	public String currentPane;
@@ -24,6 +27,14 @@ public class MainApplication extends GraphicsApplication {
 
 	public void run() {
 		System.out.println("Hello, world!");
+		
+		try {
+			file = new FileWriter("tasks.json");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		somePane = new SomePane(this);
 		try {
 			menu = new MenuPane(this);

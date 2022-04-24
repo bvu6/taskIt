@@ -22,6 +22,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
+import org.json.simple.parser.*;
+import org.json.simple.*;
+import org.json.*;
+ 
 
 import java.sql.*;
 import java.util.*;
@@ -65,6 +72,10 @@ public class NewTaskPage extends GraphicsPane{
 
 		this.program = app;
 		
+			
+		//JSONParser parser = new JSONParser();
+
+		
 		background = new GRect(0,0,800,600);
 		background.setFillColor(new Color (120,158,158));
 		background.setFilled(true);
@@ -105,6 +116,7 @@ public class NewTaskPage extends GraphicsPane{
               public void actionPerformed(ActionEvent e)
               {
                      
+            	           	  
            	   	System.out.println("Save button pressed");
            	   	
            	   	taskID++; 
@@ -114,9 +126,9 @@ public class NewTaskPage extends GraphicsPane{
                    System.out.println("\nTitle: " + titlePrint);
                    
            	   	String categoryPrint = category.getText();
-                   System.out.println("\nGroup: " + categoryPrint);
+                   System.out.println("\nCategory: " + categoryPrint);
                    
-                System.out.println("\nDueDate: " + datePicker.getModel().getValue());
+                System.out.println("\nDue Date: " + datePicker.getModel().getValue());
                 
                 String priorityPrint = priority.getItemAt(priority.getSelectedIndex());
                    System.out.println("\nPriority: " + priorityPrint);
@@ -124,6 +136,25 @@ public class NewTaskPage extends GraphicsPane{
                    
            	   	String descriptionPrint = description.getText();
                    System.out.println("\nDescription: " + descriptionPrint);
+                   
+                   JSONObject taskDetails = new JSONObject();
+                   taskDetails.put("title: ", titlePrint);   
+                   taskDetails.put("category: ", categoryPrint);
+                   taskDetails.put("due date: ", datePicker.getModel().getValue());
+                   taskDetails.put("priority: ", priorityPrint);
+                   
+                   JSONObject task = new JSONObject();
+                   task.put("task", taskDetails);
+                   
+                   try {
+					FileWriter taskFile = new FileWriter("tasks.json");
+					taskFile.write(task.toJSONString());
+					//taskFile.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                   
                    
                 program.switchToSome();
                 
@@ -133,8 +164,12 @@ public class NewTaskPage extends GraphicsPane{
                 priority.setSelectedIndex(0);
                 description.setText(""); 
                      
+                //should write withing actionlistener
+                
+                
               }// end of actionPerformed
          });
+		
 		
 		backArrow.addActionListener(new ActionListener()
         {
