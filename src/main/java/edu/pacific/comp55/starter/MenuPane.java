@@ -47,6 +47,7 @@ public class MenuPane extends GraphicsPane {
 	private GImage listItTitle;
 	
 	private JButton login;
+	private JButton newUser;
     JPanel jp = new JPanel();
 
     private String fileName = "src/main/java/edu/pacific/comp55/starter/userpwd.txt";
@@ -73,7 +74,13 @@ public class MenuPane extends GraphicsPane {
 		user = new GParagraph("Username", 282, 273);
 		error = new GParagraph("Invalid username or password entered", 300, 335);
 		error.setColor(Color.red);
-
+		
+		newUser = new JButton("Create new user");
+		newUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				program.switchTonewUser();
+			}
+		});
 		
 	    //JTextField field3 = new JTextField(10);
 
@@ -83,8 +90,6 @@ public class MenuPane extends GraphicsPane {
 		PrintWriter pw = new PrintWriter(fw);
 
 	    pw.write("hello");
-	    
-	    getLoginInfo(fileName);
 	    
 		passWord = new JTextField(10);
 	    //field1.setText(10);
@@ -106,6 +111,8 @@ public class MenuPane extends GraphicsPane {
                   
               	String pass = passWord.getText();
                 System.out.println("\npassWord: " + pass);
+                
+                getLoginInfo(fileName);
                 
                 if(user.equals("") || pass.equals("")) {
                 	program.add(error);
@@ -170,6 +177,7 @@ public class MenuPane extends GraphicsPane {
 		program.add(user);
 		program.remove(error);
 		program.getGCanvas().add(login, 350, 350);
+		program.getGCanvas().add(newUser, 325, 375);
 		//program.getGCanvas().setLayout();
 
 	}
@@ -186,6 +194,7 @@ public class MenuPane extends GraphicsPane {
 		program.remove(user);
 		program.remove(error);
 		program.getGCanvas().remove(login);
+		program.getGCanvas().remove(newUser);
 
 
 	}
