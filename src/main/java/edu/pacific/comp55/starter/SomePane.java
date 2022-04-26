@@ -136,6 +136,10 @@ public class SomePane extends GraphicsPane {
 	    darkMode.setBounds(0, 450, 150, 50);
 	    lightMode = new JButton("Light Mode");
 	    lightMode.setBounds(0, 450, 150, 50);
+	    lightMode.setBackground(Color.gray);
+    	lightMode.setOpaque(true);
+    	lightMode.setBorderPainted(false);
+	    
 
 		darkMode.addActionListener(new ActionListener()
         {
@@ -157,6 +161,9 @@ public class SomePane extends GraphicsPane {
             		program.add(dueDateOverview);
             		program.add(priorityOverview);
             		program.add(descriptionOverview);
+            		
+            		filter.setForeground(Color.white);
+            		filter.setBackground(Color.gray);
             		
             		program.getGCanvas().add(filter,200,160);
             		program.getGCanvas().revalidate(); 
@@ -180,6 +187,10 @@ public class SomePane extends GraphicsPane {
             	program.add(plusIcon);
             	program.add(editIcon);
         		program.add(deleteIcon);
+        		
+        		filter.setForeground(Color.black);
+        	    filter.setBackground(Color.white);
+        		
         		program.getGCanvas().add(filter,200,160);
         		program.getGCanvas().revalidate(); 
 
@@ -187,9 +198,6 @@ public class SomePane extends GraphicsPane {
         		logOutButton.setFillColor(Color.white);
         		program.add(logOutButton);
 	    		program.getGCanvas().remove(lightMode);
-	    		//**Still does not change colors
-	    		darkMode.setBackground(Color.gray);
-	    		darkMode.setOpaque(true);
 	    		program.getGCanvas().add(darkMode);	    	
 	    	}
 	    });
