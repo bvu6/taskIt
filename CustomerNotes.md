@@ -34,5 +34,15 @@
 - Have the create task page correspond to the light/dark modes
 - Have the drop down box also correspond to the light/dark modes (Consistant theme layout)
 
+**Sprint 4:**
+* Provide insights for what you all saw the customer do with the project:
+ - Pressed edit and delete buttons and nothing happen (have not worked on functionalities as of right now)
+ - 
+
+* Feedback from Customer:*
+- Have the create task page correspond to the light/dark modes
+- Be able to list out the tasks
+- Be able to edit and delete tasks
+- If more time work on filtering (not necessary)
 
 
