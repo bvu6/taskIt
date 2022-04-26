@@ -94,7 +94,8 @@ customer-project-voltorb created by GitHub Classroom
 
 ***Languages and Libracies needed***
 - Download jdatepicker-1.3.4.jar (For date picker to work in newTaskPage.java file)
-  - go to Preferences -> Java build path -> Libraries -> Classpath -> add external jre -> press on .jar file, then apply
+- Download json-simple-1.1.1.jar (For JSON files to work in newTaskPage.java file)
+- go to Preferences -> Java build path -> Libraries -> Classpath -> add external jre -> press on .jar file, then apply
 - java-library'
 - Latest version of 'eclipse'
 - 'org.openjfx.javafxplugin' version '0.0.9'
@@ -162,3 +163,18 @@ customer-project-voltorb created by GitHub Classroom
 
 ***Total of stories completed***
 - 6 stories, 31 points
+
+**Sprint 3:**
+26. Dropdown box also affected by dark mode
+27. Create new user button
+28. Color theme button should change along with the theme
+29. Save task details into JSON file
+30. Clear task inputs every time the task page closes
+
+***Estimated total of stories completed***
+- 8 stories, 38 points
+
+***Total of stories completed***
+- 5 stories, 20 points
+
+
