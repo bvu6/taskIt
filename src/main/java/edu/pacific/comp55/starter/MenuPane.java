@@ -18,6 +18,7 @@ import javax.swing.SwingUtilities;
 
 import acm.graphics.GObject;
 import acm.graphics.GRect;
+import acm.graphics.GImage;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,11 +39,12 @@ public class MenuPane extends GraphicsPane {
 	private GButton Login;
 	private JTextField passWord;
 	private JTextField userName;
-	private GParagraph programTitle;
+	//private GParagraph programTitle;
 	private GParagraph pass;
 	private GParagraph user;
 	private GParagraph error;
 
+	private GImage listItTitle;
 	
 	private JButton login;
     JPanel jp = new JPanel();
@@ -59,8 +61,9 @@ public class MenuPane extends GraphicsPane {
 		background.setFillColor(new Color (120,158,158));
 		background.setFilled(true);
 		
+		listItTitle = new GImage("listItTitle.png",235,130);
 		
-		programTitle = new GParagraph("VOLTORB'S TO-DO LIST", 315, 225);		
+		//programTitle = new GParagraph("VOLTORB'S TO-DO LIST", 315, 225);		
 		
 		
 		Login = new GButton("Login", 350, 350, 80, 50);
@@ -159,7 +162,8 @@ public class MenuPane extends GraphicsPane {
 	public void showContents() {
 		//program.add(rect);
 		program.add(background);
-		program.add(programTitle);
+		//program.add(programTitle);
+		program.add(listItTitle);
 		program.getGCanvas().add(passWord, 350, 290);//Need to put .getGCanvas().add 
 		program.getGCanvas().add(userName, 350, 260);//Need to put .getGCanvas().add 
 		program.add(pass);
@@ -174,7 +178,8 @@ public class MenuPane extends GraphicsPane {
 	public void hideContents() {
 		//program.remove(rect);
 		program.remove(background);
-		program.remove(programTitle);
+		//program.remove(programTitle);
+		program.remove(listItTitle);
 		program.getGCanvas().remove(passWord);
 		program.getGCanvas().remove(userName);
 		program.remove(pass);

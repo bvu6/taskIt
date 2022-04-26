@@ -14,7 +14,7 @@ public class MainApplication extends GraphicsApplication {
 	private SomePane somePane;
 	private MenuPane menu;
 	private NewTaskPage newTaskPage;
-
+	
 	private static FileWriter file;
 
 	private int count;

@@ -138,7 +138,7 @@ public class NewTaskPage extends GraphicsPane{
                    System.out.println("\nDescription: " + descriptionPrint);
                    
                    JSONObject taskDetails = new JSONObject();
-                   taskDetails.put("title: ", titlePrint);   
+                   taskDetails.put("\title: ", titlePrint);   
                    taskDetails.put("category: ", categoryPrint);
                    taskDetails.put("due date: ", datePicker.getModel().getValue());
                    taskDetails.put("priority: ", priorityPrint);

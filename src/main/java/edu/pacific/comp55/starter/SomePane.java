@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
+import acm.graphics.GLabel;
 
 public class SomePane extends GraphicsPane {
 	private MainApplication program; // you will use program to get access to
@@ -43,6 +44,16 @@ public class SomePane extends GraphicsPane {
 	private GRect centerRect;
 	private GRect taskBoardBox;
 	
+	private GLabel titleOverview;
+	private GLabel categoryOverview;
+	private GLabel dueDateOverview;
+	private GLabel priorityOverview;
+	private GLabel descriptionOverview;
+
+	
+	
+	
+	
 	public void setUser(String user) {
 		User = user;
 		program.remove(userName);
@@ -51,8 +62,6 @@ public class SomePane extends GraphicsPane {
 		program.add(userName);
 	}
 	
-	
-
 	
 	public SomePane(MainApplication app) {
 		this.program = app;
@@ -93,6 +102,12 @@ public class SomePane extends GraphicsPane {
 		rightRect.setFilled(true);
 		rightRect.sendToBack();
 		
+		titleOverview = new GLabel("Title: ", 615,225);
+		categoryOverview = new GLabel("Category: ", 615,275);
+		dueDateOverview = new GLabel("Due Date: ", 615,325);
+		priorityOverview = new GLabel("Priority: ", 615,375);
+		descriptionOverview = new GLabel("Description: ", 615,425);
+
 		
 		centerRect = new GRect(150, 47, 550, 800);
 		centerRect.setFillColor(new Color(58,58,58));
@@ -136,6 +151,12 @@ public class SomePane extends GraphicsPane {
                 	program.add(whitePlusIcon);
                 	program.add(whiteEditIcon);
             		program.add(whiteDeleteIcon);
+            		
+            		program.add(titleOverview);
+            		program.add(categoryOverview);
+            		program.add(dueDateOverview);
+            		program.add(priorityOverview);
+            		program.add(descriptionOverview);
             		
             		program.getGCanvas().add(filter,200,160);
             		program.getGCanvas().revalidate(); 
@@ -191,6 +212,12 @@ public class SomePane extends GraphicsPane {
 		program.add(leftRect);
 		program.add(rightRect);
 		//program.add(centerRect);
+		program.add(titleOverview);
+		program.add(categoryOverview);
+		program.add(dueDateOverview);
+		program.add(priorityOverview);
+		program.add(descriptionOverview);
+		
 		program.add(taskBoardBox);
 		program.add(taskBoardTitle);
 		
