@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import javax.swing.SwingUtilities;
 
+import org.json.*;
+
 public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
@@ -22,12 +24,16 @@ public class MainApplication extends GraphicsApplication {
 	
 	public String currentPane;
 	
+	static JSONArray jArray = new JSONArray();
+
+	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	}
 
 	public void run() {
 		System.out.println("Hello, world!");
+		
 		
 		try {
 			file = new FileWriter("tasks.json");
@@ -37,7 +43,8 @@ public class MainApplication extends GraphicsApplication {
 		}
 		
 		somePane = new SomePane(this);
-		try {
+				try {
+					
 			menu = new MenuPane(this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

@@ -28,7 +28,7 @@ import java.io.IOException;
 import org.json.simple.parser.*;
 import org.json.simple.*;
 import org.json.*;
- 
+import org.json.JSONObject;
 
 import java.sql.*;
 import java.util.*;
@@ -138,24 +138,26 @@ public class NewTaskPage extends GraphicsPane{
                    System.out.println("\nDescription: " + descriptionPrint);
                    
                    JSONObject taskDetails = new JSONObject();
-                   taskDetails.put("\title: ", titlePrint);   
+                   taskDetails.put("title: ", titlePrint);   
                    taskDetails.put("category: ", categoryPrint);
                    taskDetails.put("due date: ", datePicker.getModel().getValue());
                    taskDetails.put("priority: ", priorityPrint);
                    
                    JSONObject task = new JSONObject();
                    task.put("task", taskDetails);
+                   MainApplication.jArray.put(task);
+                   System.out.println(MainApplication.jArray);
                    
                    try {
 					FileWriter taskFile = new FileWriter("tasks.json");
-					taskFile.write(task.toJSONString());
+					taskFile.write(MainApplication.jArray.toString());//toJSONString
 					taskFile.flush();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
                    
-                   
+                
                 program.switchToSome();
                 
                 title.setText(""); 
