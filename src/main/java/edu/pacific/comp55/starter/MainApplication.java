@@ -73,6 +73,7 @@ public class MainApplication extends GraphicsApplication {
 	}
 	public void setUser(String user) {
 		somePane.setUser(user);
+		newTaskPage.setUsername(user);
 	}
 	public void switchToSome() { //switches to the main Task Board
 		playRandomSound();

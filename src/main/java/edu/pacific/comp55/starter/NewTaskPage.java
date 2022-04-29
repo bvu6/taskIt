@@ -68,6 +68,8 @@ public class NewTaskPage extends GraphicsPane{
 	
 	private int taskID; 
 	
+	private String userName = "";
+	
 	public NewTaskPage(MainApplication app) {
 
 		this.program = app;
@@ -144,7 +146,7 @@ public class NewTaskPage extends GraphicsPane{
                    taskDetails.put("priority: ", priorityPrint);
                    
                    JSONObject task = new JSONObject();
-                   task.put("task", taskDetails);
+                   task.put(userName, taskDetails);
                    MainApplication.jArray.put(task);
                    System.out.println(MainApplication.jArray);
                    
@@ -182,6 +184,9 @@ public class NewTaskPage extends GraphicsPane{
         });
 	}
 	
+	public void setUsername(String iUsername) {
+		userName = iUsername;
+	}
 
 @Override
 public void showContents() {
