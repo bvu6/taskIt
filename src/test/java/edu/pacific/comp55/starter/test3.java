@@ -1,6 +1,7 @@
 package edu.pacific.comp55.starter;
 
 import static org.junit.Assert.assertTrue;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
@@ -21,37 +22,33 @@ class test3 {
 	@Test
 	void test() {
 		String filePath = "src/main/java/edu/pacific/comp55/starter/tasks.json";
-//		File f = new File(filePath);
-//		assertEquals(true, f.isFile());
-		JSONObject taskDetails = new JSONObject();
-        taskDetails.put("title: ", "0");   
-        taskDetails.put("category: ", "1");
-        taskDetails.put("due date: ", "2");
-        taskDetails.put("priority: ", "3");
-        
-        JSONObject task = new JSONObject();
-        task.put("task", taskDetails);
-        MainApplication.jArray.put(task);
-        System.out.println(MainApplication.jArray);
-        
+		JSONObject jo = new JSONObject();
+		jo.put("firstName", "John");
+		jo.put("lastName", "Doe");
+
+		JSONArray ja = new JSONArray();
+		ja.add(jo);
+
+		JSONObject mainObj = new JSONObject();
+		mainObj.put("employees", ja);
+		mainObj.put("bannana", ja);
         try {
 			FileWriter taskFile = new FileWriter(filePath);
-			taskFile.write(MainApplication.jArray.toString());//toJSONString
+			taskFile.write(mainObj.toString());//toJSONString
 			taskFile.flush();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-        
         JSONParser jsonParser = new JSONParser();
         try 
         {
-        	JSONArray jsonArray = (JSONArray) jsonParser.parse(new FileReader(filePath));
-        	JSONObject taskTest = (JSONObject) jsonArray.get(0);
-    
-        	System.out.println("TTest: " + taskTest);
+        	JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(filePath));
+        	System.out.print(jsonObject);
+        	System.out.print(jsonObject.keySet());
+        	System.out.print(jsonObject.get("employees"));
+        	System.out.print(jsonObject.get("employees").getClass());
         	
- 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

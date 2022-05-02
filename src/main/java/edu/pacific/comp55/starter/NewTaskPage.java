@@ -27,6 +27,7 @@ import java.io.IOException;
 
 import org.json.simple.parser.*;
 import org.json.simple.*;
+import org.json.simple.JSONArray;
 import org.json.*;
 import org.json.JSONObject;
 
@@ -68,7 +69,9 @@ public class NewTaskPage extends GraphicsPane{
 	
 	private int taskID; 
 	
-	private String userName = "";
+	private String userName = "default";
+	
+	String filePath = "src/main/java/edu/pacific/comp55/starter/tasks.json";
 	
 	public NewTaskPage(MainApplication app) {
 
@@ -115,7 +118,8 @@ public class NewTaskPage extends GraphicsPane{
 		
 		save.addActionListener(new ActionListener()
          {
-              public void actionPerformed(ActionEvent e)
+              @SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e)
               {
                      
             	           	  
@@ -144,16 +148,24 @@ public class NewTaskPage extends GraphicsPane{
                    taskDetails.put("category: ", categoryPrint);
                    taskDetails.put("due date: ", datePicker.getModel().getValue());
                    taskDetails.put("priority: ", priorityPrint);
-                   
-                   JSONObject task = new JSONObject();
-                   task.put(userName, taskDetails);
-                   MainApplication.jArray.put(task);
-                   System.out.println(MainApplication.jArray);
+                   JSONArray listofTasks = new JSONArray();
+                   if(MainApplication.jObject.keySet().contains(userName)) {
+                	   listofTasks = (JSONArray) MainApplication.jObject.get(userName);
+                	   listofTasks.add(taskDetails);
+                	   MainApplication.jObject.replace(userName, listofTasks);
+                   }
+                   else {
+                	   listofTasks.add(taskDetails);
+                	   MainApplication.jObject.put(userName, listofTasks);
+                   }
+          
+                   System.out.println(MainApplication.jObject);
                    
                    try {
-					FileWriter taskFile = new FileWriter("tasks.json");
-					taskFile.write(MainApplication.jArray.toString());//toJSONString
+					FileWriter taskFile = new FileWriter(filePath);
+					taskFile.write(MainApplication.jObject.toString());//toJSONString
 					taskFile.flush();
+					taskFile.close();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -167,8 +179,6 @@ public class NewTaskPage extends GraphicsPane{
                 datePicker.getJFormattedTextField().setText("");
                 priority.setSelectedIndex(0);
                 description.setText(""); 
-                     
-                //should write withing actionlistener
                 
                 
               }// end of actionPerformed

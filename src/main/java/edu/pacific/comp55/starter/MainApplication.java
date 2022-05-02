@@ -1,11 +1,16 @@
 package edu.pacific.comp55.starter;
 
+import java.io.FileReader;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.SwingUtilities;
 
-import org.json.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 800;
@@ -19,13 +24,15 @@ public class MainApplication extends GraphicsApplication {
 	private newUser newUser;
 	
 	private static FileWriter file;
+	private static JSONParser jsonParser = new JSONParser();
 
 	private int count;
 	
 	public String currentPane;
 	
-	static JSONArray jArray = new JSONArray();
+	static JSONObject jObject = new JSONObject();
 
+	String filePath = "src/main/java/edu/pacific/comp55/starter/tasks.json";
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -41,7 +48,13 @@ public class MainApplication extends GraphicsApplication {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+		try {
+			jObject = (JSONObject) jsonParser.parse(new FileReader(filePath));
+		} catch (IOException e) {
+	        e.printStackTrace();
+	    } catch (ParseException e) {
+			e.printStackTrace();
+		} 
 		somePane = new SomePane(this);
 				try {
 					
