@@ -435,6 +435,7 @@ public class SomePane extends GraphicsPane {
 	@Override
 	public void hideContents() {
 		//program.remove(img);
+		
 		program.remove(topRect);
 		program.remove(leftRect);
 		program.remove(rightRect);
@@ -466,6 +467,15 @@ public class SomePane extends GraphicsPane {
 		//para.setText("you need\nto click\non the eyes\nto go back");
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == logOutButton) {
+			titleOverview.setLabel("Title: ");
+			
+			categoryOverview.setLabel("Category: ");
+
+			dueDateOverview.setLabel("Due Date: ");
+
+			priorityOverview.setLabel("Priority: ");
+
+			descriptionOverview.setLabel("Description: ");
 			System.out.println("Log out button pressed");
 			program.switchToMenu();//changed here program.switchToTask()
 		}
