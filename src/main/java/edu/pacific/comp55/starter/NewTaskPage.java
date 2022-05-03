@@ -33,6 +33,8 @@ import org.json.simple.JSONObject;
 import org.json.*;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Calendar;
 import java.util.Date;
@@ -73,6 +75,15 @@ public class NewTaskPage extends GraphicsPane{
 	private String userName = "default";
 	
 	String filePath = "src/main/java/edu/pacific/comp55/starter/tasks.json";
+	
+	private int jsonIndex = 0;
+	
+	public void savedTask(int iJsonIndex) {
+		jsonIndex = iJsonIndex;
+		//TODO: set textfield values for description, date, title, category, etc, with the initial values
+		//of the current task
+		
+	}
 	
 	public NewTaskPage(MainApplication app) {
 
@@ -136,6 +147,9 @@ public class NewTaskPage extends GraphicsPane{
                    System.out.println("\nCategory: " + categoryPrint);
                    
                 System.out.println("\nDue Date: " + datePicker.getModel().getValue());
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String today = formatter.format(datePicker.getModel().getValue());
+                System.out.println("Today : " + today);
                 
                 String priorityPrint = priority.getItemAt(priority.getSelectedIndex());
                    System.out.println("\nPriority: " + priorityPrint);
@@ -147,8 +161,9 @@ public class NewTaskPage extends GraphicsPane{
                    JSONObject taskDetails = new JSONObject();
                    taskDetails.put("title", titlePrint);   
                    taskDetails.put("category", categoryPrint);
-                   //taskDetails.put("due date", datePicker.getModel().getValue());
+                   taskDetails.put("due date", today);
                    taskDetails.put("priority", priorityPrint);
+                   taskDetails.put("description", descriptionPrint);
                    JSONArray listofTasks = new JSONArray();
                    if(MainApplication.jObject.keySet().contains(userName)) {
                 	   listofTasks = (JSONArray) MainApplication.jObject.get(userName);

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -87,7 +88,20 @@ public class SomePane extends GraphicsPane {
 				JLabel currentTask = new JLabel();
 				currentTask.setText(title);
 				currentTask.setBorder(border);
+				currentTask.setFont(new Font("Serif", Font.PLAIN, 14));
+				
+				currentTask.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						titleOverview.setLabel("Title: " + task.get("title"));
+						categoryOverview.setLabel("Category: " + task.get("category"));
+						dueDateOverview.setLabel("Due Date: " + task.get("due date"));
+						priorityOverview.setLabel("Priority: " + task.get("priority"));
+						descriptionOverview.setLabel("Description: " + task.get("description"));
+					}
+				});
+				
 				taskList.add(currentTask);
+				
 			}
 		}
 	}
@@ -190,11 +204,10 @@ public class SomePane extends GraphicsPane {
             		program.add(dueDateOverview);
             		program.add(priorityOverview);
             		program.add(descriptionOverview);
-            		
-            		program.add(test);
-            		
-            		filter.setForeground(Color.white);
+          
+            		filter.setForeground(Color.black);
             		filter.setBackground(Color.gray);
+            	
             		
             		program.getGCanvas().add(filter,200,160);
             		program.getGCanvas().revalidate(); 
@@ -205,8 +218,15 @@ public class SomePane extends GraphicsPane {
                 	program.getGCanvas().remove(darkMode);
                 	program.getGCanvas().add(lightMode); 
                 	
+                	for(int x = 0; x < taskList.size(); x++) {
+            			program.getGCanvas().remove(taskList.get(x));
+            		}
+                	
                 	int currentTaskY = 225;
+                	Border border = BorderFactory.createLineBorder(Color.white, 1);
             		for(int x = 0; x < taskList.size(); x++) {
+            			taskList.get(x).setBorder(border);
+            			taskList.get(x).setForeground(Color.white);
             			program.getGCanvas().add(taskList.get(x), 200, currentTaskY);
             			currentTaskY += 25;
             		}
@@ -235,7 +255,20 @@ public class SomePane extends GraphicsPane {
         		logOutButton.setFillColor(Color.white);
         		program.add(logOutButton);
 	    		program.getGCanvas().remove(lightMode);
-	    		program.getGCanvas().add(darkMode);	  
+	    		program.getGCanvas().add(darkMode);	 
+	    		
+	    		for(int x = 0; x < taskList.size(); x++) {
+	    			program.getGCanvas().remove(taskList.get(x));
+	    		}
+	    		
+	    		int currentTaskY = 225;
+            	Border border = BorderFactory.createLineBorder(Color.black, 1);
+        		for(int x = 0; x < taskList.size(); x++) {
+        			taskList.get(x).setBorder(border);
+        			taskList.get(x).setForeground(Color.black);
+        			program.getGCanvas().add(taskList.get(x), 200, currentTaskY);
+        			currentTaskY += 25;
+        		}
 	    		
 	    	}
 	    });
