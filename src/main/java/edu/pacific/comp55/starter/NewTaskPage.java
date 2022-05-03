@@ -5,6 +5,7 @@ import java.awt.Color;
 
 
 
+
 import java.awt.font.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,8 +29,8 @@ import java.io.IOException;
 import org.json.simple.parser.*;
 import org.json.simple.*;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.*;
-import org.json.JSONObject;
 
 import java.sql.*;
 import java.util.*;
@@ -144,10 +145,10 @@ public class NewTaskPage extends GraphicsPane{
                    System.out.println("\nDescription: " + descriptionPrint);
                    
                    JSONObject taskDetails = new JSONObject();
-                   taskDetails.put("title: ", titlePrint);   
-                   taskDetails.put("category: ", categoryPrint);
-                   taskDetails.put("due date: ", datePicker.getModel().getValue());
-                   taskDetails.put("priority: ", priorityPrint);
+                   taskDetails.put("title", titlePrint);   
+                   taskDetails.put("category", categoryPrint);
+                   //taskDetails.put("due date", datePicker.getModel().getValue());
+                   taskDetails.put("priority", priorityPrint);
                    JSONArray listofTasks = new JSONArray();
                    if(MainApplication.jObject.keySet().contains(userName)) {
                 	   listofTasks = (JSONArray) MainApplication.jObject.get(userName);

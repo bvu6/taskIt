@@ -1,12 +1,22 @@
 package edu.pacific.comp55.starter;
 import java.awt.Color;
+
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.border.Border;
+
+import org.json.simple.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -49,8 +59,10 @@ public class SomePane extends GraphicsPane {
 	private GLabel dueDateOverview;
 	private GLabel priorityOverview;
 	private GLabel descriptionOverview;
-
 	
+	private GLabel test;
+
+	ArrayList<JLabel> taskList = new ArrayList<JLabel>();
 	
 	
 	
@@ -60,8 +72,25 @@ public class SomePane extends GraphicsPane {
 		userName = new GParagraph(User, 45, 30);//**will have to get user from MenuPane
 		userName.setColor(Color.white);
 		program.add(userName);
+		System.out.println("setUser");
 	}
 	
+	public void getTaskLabels() {
+		taskList = new ArrayList<JLabel>();
+		if(MainApplication.jObject.keySet().contains(User)) {
+			System.out.println("task labels");
+			JSONArray listofTasks = (JSONArray) MainApplication.jObject.get(User);
+			Border border = BorderFactory.createLineBorder(Color.black, 1);
+			for(int x = 0; x < listofTasks.size(); x++) {
+				JSONObject task = (JSONObject) listofTasks.get(x);
+				String title = "Task ID: " + Integer.toString(x) + "\tTitle: " + task.get("title");
+				JLabel currentTask = new JLabel();
+				currentTask.setText(title);
+				currentTask.setBorder(border);
+				taskList.add(currentTask);
+			}
+		}
+	}
 	
 	public SomePane(MainApplication app) {
 		this.program = app;
@@ -107,7 +136,8 @@ public class SomePane extends GraphicsPane {
 		dueDateOverview = new GLabel("Due Date: ", 615,325);
 		priorityOverview = new GLabel("Priority: ", 615,375);
 		descriptionOverview = new GLabel("Description: ", 615,425);
-
+		
+		test = new GLabel("somethiing ", 300, 225);
 		
 		centerRect = new GRect(150, 47, 550, 800);
 		centerRect.setFillColor(new Color(58,58,58));
@@ -140,7 +170,6 @@ public class SomePane extends GraphicsPane {
     	lightMode.setOpaque(true);
     	lightMode.setBorderPainted(false);
 	    
-
 		darkMode.addActionListener(new ActionListener()
         {
              public void actionPerformed(ActionEvent e)
@@ -162,6 +191,8 @@ public class SomePane extends GraphicsPane {
             		program.add(priorityOverview);
             		program.add(descriptionOverview);
             		
+            		program.add(test);
+            		
             		filter.setForeground(Color.white);
             		filter.setBackground(Color.gray);
             		
@@ -172,7 +203,13 @@ public class SomePane extends GraphicsPane {
                 	program.getGCanvas().add(logOutButton);                                 
             		logOutButton.setFillColor(Color.gray);
                 	program.getGCanvas().remove(darkMode);
-                	program.getGCanvas().add(lightMode);                                 
+                	program.getGCanvas().add(lightMode); 
+                	
+                	int currentTaskY = 225;
+            		for(int x = 0; x < taskList.size(); x++) {
+            			program.getGCanvas().add(taskList.get(x), 200, currentTaskY);
+            			currentTaskY += 25;
+            		}
              }// end of actionPerformed
         }); //end of actionListener
 	   
@@ -198,7 +235,8 @@ public class SomePane extends GraphicsPane {
         		logOutButton.setFillColor(Color.white);
         		program.add(logOutButton);
 	    		program.getGCanvas().remove(lightMode);
-	    		program.getGCanvas().add(darkMode);	    	
+	    		program.getGCanvas().add(darkMode);	  
+	    		
 	    	}
 	    });
 		plusIcon.addActionListener(new ActionListener() {
@@ -215,6 +253,7 @@ public class SomePane extends GraphicsPane {
 
 	@Override
 	public void showContents() {
+		getTaskLabels();
 		//program.add(img);
 		program.add(topRect);
 		program.add(leftRect);
@@ -225,6 +264,12 @@ public class SomePane extends GraphicsPane {
 		program.add(dueDateOverview);
 		program.add(priorityOverview);
 		program.add(descriptionOverview);
+		
+		int currentTaskY = 225;
+		for(int x = 0; x < taskList.size(); x++) {
+			program.getGCanvas().add(taskList.get(x), 200, currentTaskY);
+			currentTaskY += 25;
+		}
 		
 		program.add(taskBoardBox);
 		program.add(taskBoardTitle);
@@ -242,6 +287,7 @@ public class SomePane extends GraphicsPane {
 		program.getGCanvas().add(filter,200,160);
 		program.getGCanvas().revalidate(); 
 
+		
 
 		//program.getGCanvas().add(taskBoardTab);
 		//program.getGCanvas().add(calendarTab);
@@ -264,13 +310,15 @@ public class SomePane extends GraphicsPane {
 		program.remove(editIcon);
 		program.remove(deleteIcon);
 		program.getGCanvas().remove(filter);
-
+		
+		for(int x = 0; x < taskList.size(); x++) {
+			program.getGCanvas().remove(taskList.get(x));
+		}
 		
 		//program.getGCanvas().remove(taskBoardTab);
 		//program.getGCanvas().remove(calendarTab);
 		program.getGCanvas().remove(darkMode);
 		program.getGCanvas().remove(lightMode);
-		
 
 	}
 	
