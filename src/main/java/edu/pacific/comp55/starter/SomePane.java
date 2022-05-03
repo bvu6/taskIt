@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -61,11 +63,16 @@ public class SomePane extends GraphicsPane {
 	private GLabel priorityOverview;
 	private GLabel descriptionOverview;
 	
+	private GLabel deleteMessage;
+	
 	private GLabel test;
 
 	ArrayList<JLabel> taskList = new ArrayList<JLabel>();
 	
+	String filePath = "src/main/java/edu/pacific/comp55/starter/tasks.json";
 	
+	private boolean deleteTask = false;
+	private boolean themeMode = false;
 	
 	public void setUser(String user) {
 		User = user;
@@ -92,27 +99,71 @@ public class SomePane extends GraphicsPane {
 				currentTask.setText(title);
 				currentTask.setBorder(border);
 				currentTask.setFont(new Font("Serif", Font.PLAIN, 18));
-				currentTask.setBackground(new Color(224, 159, 29));
+				currentTask.setBackground(new Color(163, 199, 199));
 				currentTask.setOpaque(true);
 
-				
 				currentTask.addMouseListener(new MouseAdapter() {
+					@SuppressWarnings("unchecked")
 					public void mouseClicked(MouseEvent evt) {
-						titleOverview.setLabel("Title: " + task.get("title"));
-						titleOverview.setFont(new Font("Serif", Font.BOLD, 16));
-						
-						categoryOverview.setLabel("Category: " + task.get("category"));
-						categoryOverview.setFont(new Font("Serif", Font.PLAIN, 14));
-
-						dueDateOverview.setLabel("Due Date: " + task.get("due date"));
-						dueDateOverview.setFont(new Font("Serif", Font.PLAIN, 14));
-
-						priorityOverview.setLabel("Priority: " + task.get("priority"));
-						priorityOverview.setFont(new Font("Serif", Font.PLAIN, 14));
-
-						descriptionOverview.setLabel("Description: " + task.get("description"));						titleOverview.setFont(new Font("Serif", Font.PLAIN, 12));
-						descriptionOverview.setFont(new Font("Serif", Font.PLAIN, 14));
-
+						if(deleteTask == false) {
+							titleOverview.setLabel("Title: " + task.get("title"));
+							
+							categoryOverview.setLabel("Category: " + task.get("category"));
+	
+							dueDateOverview.setLabel("Due Date: " + task.get("due date"));
+	
+							priorityOverview.setLabel("Priority: " + task.get("priority"));
+	
+							descriptionOverview.setLabel("Description: " + task.get("description"));
+						}
+						else if(deleteTask == true) {
+							listofTasks.remove(task);
+							MainApplication.jObject.replace(User, listofTasks);
+							try {
+								FileWriter taskFile = new FileWriter(filePath);
+								taskFile.write(MainApplication.jObject.toString());//toJSONString
+								taskFile.flush();
+								taskFile.close();
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							for(int x = 0; x < taskList.size(); x++) {
+								program.getGCanvas().remove(taskList.get(x));
+							}
+							getTaskLabels();
+							if(themeMode == false) {
+								int currentTaskY = 225;
+				            	Border border = BorderFactory.createLineBorder(Color.black, 1);
+				        		for(int x = 0; x < taskList.size(); x++) {
+				        			taskList.get(x).setBorder(border);
+				        			taskList.get(x).setForeground(Color.black);
+				        			program.getGCanvas().add(taskList.get(x), 200, currentTaskY);
+				        			currentTaskY += 25;
+				        		}
+							}
+							else if(themeMode == true) {
+								int currentTaskY = 225;
+			                	Border border = BorderFactory.createLineBorder(Color.white, 1);
+			            		for(int x = 0; x < taskList.size(); x++) {
+			            			taskList.get(x).setBorder(border);
+			            			taskList.get(x).setForeground(Color.white);
+			            			program.getGCanvas().add(taskList.get(x), 200, currentTaskY);
+			            			currentTaskY += 25;
+			            		}
+							}
+							deleteTask = false;
+							titleOverview.setLabel("Title: ");
+							
+							categoryOverview.setLabel("Category: ");
+	
+							dueDateOverview.setLabel("Due Date: ");
+	
+							priorityOverview.setLabel("Priority: ");
+	
+							descriptionOverview.setLabel("Description: ");
+							program.remove(deleteMessage);
+						}
 					}
 				});
 				
@@ -131,9 +182,38 @@ public class SomePane extends GraphicsPane {
 
 		editIcon = new GImage("editIcon.png", 484, 150);
 		whiteEditIcon = new GImage("whiteEditIcon.png", 484, 150);
-
+		
+		deleteMessage = new GLabel("Select a task to delete.\nIf you'd like to cancel, click the delete icon again.", 164, 199);
+		
 		deleteIcon = new GImage("trashIcon.png", 520,150);
+		deleteIcon.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				if(deleteTask == true) {
+					deleteTask = false;
+					program.remove(deleteMessage);
+				}
+				else if(deleteTask == false) {
+					deleteTask = true;
+					deleteMessage.setColor(Color.black);
+					program.add(deleteMessage);
+				}
+			}
+		});
 		whiteDeleteIcon = new GImage("whiteTrashIcon.png", 520,150);
+		whiteDeleteIcon.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				if(deleteTask == true) {
+					deleteTask = false;
+					program.remove(deleteMessage);
+				}
+				else if(deleteTask == false) {
+					deleteTask = true;
+					deleteMessage.setColor(Color.white);
+					program.add(deleteMessage);
+				}
+			}
+		});
+		
 		
 		String[] filterOptions = {"Date Created","Due Date", "Priority", "Project"};
 	    filter = new JComboBox<>(filterOptions);
@@ -175,9 +255,6 @@ public class SomePane extends GraphicsPane {
 
 		descriptionOverview = new GLabel("Description: ", 615,425);
 		descriptionOverview.setFont(new Font("Serif", Font.PLAIN, 14));
-
-		
-		test = new GLabel("somethiing ", 300, 225);
 		
 		centerRect = new GRect(150, 47, 550, 800);
 		centerRect.setFillColor(new Color(58,58,58));
@@ -216,6 +293,7 @@ public class SomePane extends GraphicsPane {
              {
                     
           	   	System.out.println("dark theme button pressed");
+          	   	themeMode = true;
 
                 	program.add(centerRect);
                 	program.add(rightRect);
@@ -262,6 +340,7 @@ public class SomePane extends GraphicsPane {
 		lightMode.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
 	    		System.out.println("light theme button pressed");
+	    		themeMode = false;
 	    		
             	program.remove(whitePlusIcon);
             	program.remove(whiteEditIcon);
@@ -368,6 +447,7 @@ public class SomePane extends GraphicsPane {
 		
 		program.remove(editIcon);
 		program.remove(deleteIcon);
+		program.remove(deleteMessage);
 		program.getGCanvas().remove(filter);
 		
 		for(int x = 0; x < taskList.size(); x++) {
