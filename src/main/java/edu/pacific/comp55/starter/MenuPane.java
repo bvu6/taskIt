@@ -62,7 +62,7 @@ public class MenuPane extends GraphicsPane {
 		background.setFillColor(new Color (120,158,158));
 		background.setFilled(true);
 		
-		listItTitle = new GImage("listItTitle.png",235,130);
+		listItTitle = new GImage("taskItTitle.png",235,130);
 		
 		//programTitle = new GParagraph("VOLTORB'S TO-DO LIST", 315, 225);		
 		
