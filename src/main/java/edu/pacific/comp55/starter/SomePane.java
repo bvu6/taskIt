@@ -73,6 +73,8 @@ public class SomePane extends GraphicsPane {
 		userName = new GParagraph(User, 45, 30);//**will have to get user from MenuPane
 		userName.setColor(Color.white);
 		program.add(userName);
+		userName.setFont(new Font("Serif", Font.PLAIN, 16));
+
 		System.out.println("setUser");
 	}
 	
@@ -84,19 +86,33 @@ public class SomePane extends GraphicsPane {
 			Border border = BorderFactory.createLineBorder(Color.black, 1);
 			for(int x = 0; x < listofTasks.size(); x++) {
 				JSONObject task = (JSONObject) listofTasks.get(x);
-				String title = "Task ID: " + Integer.toString(x) + "\tTitle: " + task.get("title");
+				//String title = "Task ID: " + Integer.toString(x) + "\t\t\t\tTitle: " + task.get("title");
+				String title = "\nTitle: " + task.get("title") + "\t\t\t\t Due Date: " + task.get("due date") + "\n";
 				JLabel currentTask = new JLabel();
 				currentTask.setText(title);
 				currentTask.setBorder(border);
-				currentTask.setFont(new Font("Serif", Font.PLAIN, 14));
+				currentTask.setFont(new Font("Serif", Font.PLAIN, 18));
+				currentTask.setBackground(new Color(224, 159, 29));
+				currentTask.setOpaque(true);
+
 				
 				currentTask.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
 						titleOverview.setLabel("Title: " + task.get("title"));
+						titleOverview.setFont(new Font("Serif", Font.BOLD, 16));
+						
 						categoryOverview.setLabel("Category: " + task.get("category"));
+						categoryOverview.setFont(new Font("Serif", Font.PLAIN, 14));
+
 						dueDateOverview.setLabel("Due Date: " + task.get("due date"));
+						dueDateOverview.setFont(new Font("Serif", Font.PLAIN, 14));
+
 						priorityOverview.setLabel("Priority: " + task.get("priority"));
-						descriptionOverview.setLabel("Description: " + task.get("description"));
+						priorityOverview.setFont(new Font("Serif", Font.PLAIN, 14));
+
+						descriptionOverview.setLabel("Description: " + task.get("description"));						titleOverview.setFont(new Font("Serif", Font.PLAIN, 12));
+						descriptionOverview.setFont(new Font("Serif", Font.PLAIN, 14));
+
 					}
 				});
 				
@@ -146,10 +162,20 @@ public class SomePane extends GraphicsPane {
 		rightRect.sendToBack();
 		
 		titleOverview = new GLabel("Title: ", 615,225);
+		titleOverview.setFont(new Font("Serif", Font.PLAIN, 14));
+
 		categoryOverview = new GLabel("Category: ", 615,275);
+		categoryOverview.setFont(new Font("Serif", Font.PLAIN, 14));
+
 		dueDateOverview = new GLabel("Due Date: ", 615,325);
+		dueDateOverview.setFont(new Font("Serif", Font.PLAIN, 14));
+
 		priorityOverview = new GLabel("Priority: ", 615,375);
+		priorityOverview.setFont(new Font("Serif", Font.PLAIN, 14));
+
 		descriptionOverview = new GLabel("Description: ", 615,425);
+		descriptionOverview.setFont(new Font("Serif", Font.PLAIN, 14));
+
 		
 		test = new GLabel("somethiing ", 300, 225);
 		

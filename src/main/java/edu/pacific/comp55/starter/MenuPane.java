@@ -1,9 +1,7 @@
 package edu.pacific.comp55.starter;
 
 import java.awt.Color;
-
-
-
+import java.awt.Font;
 import java.awt.font.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -70,9 +68,15 @@ public class MenuPane extends GraphicsPane {
 		Login = new GButton("Login", 350, 350, 80, 50);
 		Login.setFillColor(Color.cyan);
 		
-		pass = new GParagraph("\nPassword", 290, 290);
-		user = new GParagraph("Username", 282, 273);
-		error = new GParagraph("Invalid username or password entered", 300, 335);
+		pass = new GParagraph("\nPassword: ", 285, 290);
+		pass.setFont(new Font("Serif", Font.PLAIN, 14));
+
+		user = new GParagraph("Username: ", 282, 273);
+		user.setFont(new Font("Serif", Font.PLAIN, 14));
+
+		error = new GParagraph("Invalid username or password entered", 275, 335);
+		error.setFont(new Font("Serif", Font.PLAIN, 16));
+
 		error.setColor(Color.red);
 		
 		newUser = new JButton("Create new user");
