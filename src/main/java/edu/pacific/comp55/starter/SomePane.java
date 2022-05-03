@@ -64,13 +64,13 @@ public class SomePane extends GraphicsPane {
 	private GLabel descriptionOverview;
 	
 	private GLabel deleteMessage;
-	
-	private GLabel test;
+	private GLabel tobeContinued;
 
 	ArrayList<JLabel> taskList = new ArrayList<JLabel>();
 	
 	String filePath = "src/main/java/edu/pacific/comp55/starter/tasks.json";
 	
+	private boolean tobeMsg = false;
 	private boolean deleteTask = false;
 	private boolean themeMode = false;
 	
@@ -180,11 +180,37 @@ public class SomePane extends GraphicsPane {
 		plusIcon = new GImage("plusIcon.png", 440, 150);
 		whitePlusIcon = new GImage("whitePlusIcon.png", 440, 150);
 
+		tobeContinued = new GLabel("Current feature not available yet.\n Click again to remove message.", 164, 199);
 		editIcon = new GImage("editIcon.png", 484, 150);
+		editIcon.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				if(tobeMsg == true) {
+					program.remove(tobeContinued);
+					tobeMsg = false;
+				}
+				else if(tobeMsg == false) {
+					tobeContinued.setColor(Color.black);
+					program.add(tobeContinued);
+					tobeMsg = true;
+				}
+			}
+		});
 		whiteEditIcon = new GImage("whiteEditIcon.png", 484, 150);
+		whiteEditIcon.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				if(tobeMsg == true) {
+					program.remove(tobeContinued);
+					tobeMsg = false;
+				}
+				else if(tobeMsg == false) {
+					tobeContinued.setColor(Color.white);
+					program.add(tobeContinued);
+					tobeMsg = true;
+				}
+			}
+		});
 		
 		deleteMessage = new GLabel("Select a task to delete.\nIf you'd like to cancel, click the delete icon again.", 164, 199);
-		
 		deleteIcon = new GImage("trashIcon.png", 520,150);
 		deleteIcon.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
@@ -447,6 +473,7 @@ public class SomePane extends GraphicsPane {
 		program.remove(logOutButton);
 		
 		program.remove(editIcon);
+		program.remove(tobeContinued);
 		program.remove(deleteIcon);
 		program.remove(deleteMessage);
 		program.getGCanvas().remove(filter);
