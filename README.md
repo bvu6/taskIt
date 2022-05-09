@@ -1,6 +1,9 @@
 # customer-project-voltorb
 customer-project-voltorb created by GitHub Classroom
 
+## Link to Final report markdown file
+- https://github.com/comp129/customer-project-voltorb/blob/111a214145211748b8f270d338961c49682c9d7b/finalreport_readme.md
+
 **SPRINT 1:**
 
 1. Opening page: Create new account
